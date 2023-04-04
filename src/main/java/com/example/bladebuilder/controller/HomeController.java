@@ -2,13 +2,15 @@ package com.example.bladebuilder.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("")
 public class HomeController {
 
-    @RequestMapping("")
+    @RequestMapping("/hello")
+    @ResponseBody
     public String hello() {
-        return "hello";
+        return "Cześć";
     }
 }
