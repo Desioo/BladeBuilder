@@ -1,4 +1,4 @@
-package com.example.bladebuilder.service.converter;
+package com.example.bladebuilder.converter;
 
 import com.example.bladebuilder.model.User;
 import com.example.bladebuilder.service.UserService;
@@ -14,6 +14,6 @@ public class UserConverter implements Converter<String, Optional<User>>{
 
     @Override
     public Optional<User> convert(String value) {
-        return userService.findUserByIdOrPassword(value);
+        return userService.findById(Long.parseLong(value));
     }
 }
