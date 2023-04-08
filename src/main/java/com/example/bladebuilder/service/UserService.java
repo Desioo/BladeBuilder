@@ -39,8 +39,8 @@ public class UserService implements ServiceInterface<User> {
         return userRepository.findAll();
     }
 
-    public Optional<User> findUserByIdOrPassword(String value){
-        return  userRepository.findFirstByIdOrPassword(value);
-    }
+//    public Optional<User> findUserByIdOrPassword(String value){
+//        return  userRepository.findFirstByIdOrPassword(value);
+//    }
 
 }
