@@ -1,8 +1,8 @@
 package com.example.bladebuilder.controller;
 
-import com.example.bladebuilder.converter.UserResponseDTOConverter;
 import com.example.bladebuilder.model.response.UserResponseDTO;
 import com.example.bladebuilder.service.UserService;
+import com.example.bladebuilder.service.converter.UserResponseDTOConverter;
 import com.example.bladebuilder.utils.ConverterUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
