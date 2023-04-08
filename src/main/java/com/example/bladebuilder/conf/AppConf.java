@@ -1,5 +1,6 @@
 package com.example.bladebuilder.conf;
 
+import com.example.bladebuilder.service.converter.UserConverter;
 import com.example.bladebuilder.service.converter.UserResponseDTOConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +21,10 @@ public class AppConf implements WebMvcConfigurer {
 
 
     public void addFormatters(FormatterRegistry registry) {
+
         registry.addConverter(getUserResponseDTOConverter());
+        registry.addConverter(getUserConverter());
+
     }
 
     @Bean
@@ -28,5 +32,9 @@ public class AppConf implements WebMvcConfigurer {
         return new UserResponseDTOConverter();
     }
 
+    @Bean
+    public UserConverter getUserConverter(){
+        return new UserConverter();
+    }
 
 }

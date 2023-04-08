@@ -34,4 +34,9 @@ public class UserService implements ServiceInterface<User> {
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
+    public Optional<User> findUserByIdOrPassword(String value){
+        return  userRepository.findFirstByIdOrPassword(value);
+    }
+
 }
