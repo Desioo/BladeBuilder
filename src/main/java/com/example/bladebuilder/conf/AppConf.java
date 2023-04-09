@@ -1,9 +1,8 @@
 package com.example.bladebuilder.conf;
 
+import com.example.bladebuilder.converter.MeasurementConverter;
 import com.example.bladebuilder.converter.UserConverter;
 import com.example.bladebuilder.converter.UserResponseDTOConverter;
-import com.example.bladebuilder.model.calculate.Knife;
-import com.example.bladebuilder.model.calculate.Separator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -25,6 +24,7 @@ public class AppConf implements WebMvcConfigurer {
 
         registry.addConverter(getUserResponseDTOConverter());
         registry.addConverter(getUserConverter());
+        registry.addConverter(getMeasurementConverter());
 
     }
 
@@ -36,5 +36,10 @@ public class AppConf implements WebMvcConfigurer {
     @Bean
     public UserConverter getUserConverter() {
         return new UserConverter();
+    }
+
+    @Bean
+    public MeasurementConverter getMeasurementConverter() {
+        return new MeasurementConverter();
     }
 }
