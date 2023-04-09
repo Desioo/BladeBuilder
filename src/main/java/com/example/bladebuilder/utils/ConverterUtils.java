@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class ConverterUtils {
 
-    public static <A, B, C extends Converter<A, B>> List<B> convertList(List<A> list, C converter){
+    public static <A, B> List<B> convertList(List<A> list, Converter<A, B> converter){
       return list.stream()
                 .map(converter::convert).collect(Collectors.toList());
     }

@@ -19,13 +19,13 @@ public class MeasurementService implements ServiceInterface<Measurement> {
     private final UserRepository userRepository;
 
     @Override
-    public void save(Measurement o) {
-        measurementRepository.save(o);
+    public void save(Measurement measurement) {
+        measurementRepository.save(measurement);
     }
 
     @Override
-    public void remove(Measurement o) {
-        measurementRepository.delete(o);
+    public void remove(Measurement measurement) {
+        measurementRepository.delete(measurement);
     }
 
     @Override

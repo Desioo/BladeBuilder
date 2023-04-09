@@ -15,13 +15,13 @@ public class UserService implements ServiceInterface<User> {
     private final UserRepository userRepository;
 
     @Override
-    public void save(User o) {
-        userRepository.save(o);
+    public void save(User user) {
+        userRepository.save(user);
     }
 
     @Override
-    public void remove(User o) {
-       userRepository.delete(o);
+    public void remove(User user) {
+       userRepository.delete(user);
     }
 
     @Override
@@ -34,8 +34,20 @@ public class UserService implements ServiceInterface<User> {
         return userRepository.findAll();
     }
 
-//    public Optional<User> findUserByIdOrPassword(String value){
-//        return  userRepository.findFirstByIdOrPassword(value);
-//    }
+    public Optional<User> findUserByPassword(String password){
+        return  userRepository.findFirstByPassword(password);
+    }
+
+    public String getUserNameByPassword(String password){
+
+        Optional<User> userByPassword = findUserByPassword(password);
+
+        if(userByPassword.isPresent()){
+            return userByPassword.get().getName();
+        }else{
+            return "";
+        }
+
+    }
 
 }

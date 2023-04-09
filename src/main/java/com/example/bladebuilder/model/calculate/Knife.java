@@ -1,6 +1,7 @@
 package com.example.bladebuilder.model.calculate;
 
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
@@ -18,9 +19,9 @@ public class Knife implements CenterCalculator {
     private static final BigDecimal TEN_PERCENT = new BigDecimal("0.1");
 
     private final MeasurementRequestDTO measurementRequestDTO;
-    @Setter
+    @Getter
     private String center1;
-    @Setter
+    @Getter
     private List<String> center2;
 
     @Override
