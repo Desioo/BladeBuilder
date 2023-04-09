@@ -1,7 +1,7 @@
 package com.example.bladebuilder.model.calculate;
 
-import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import com.example.bladebuilder.model.response.MeasurementWithCalculationsDTO;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -14,7 +14,9 @@ public class Separator extends MeasurementWithCalculationsDTO implements CenterC
     private static final BigDecimal CORRECTION_FOR_CENTER_2 = new BigDecimal("35");
     private static final BigDecimal REDUCE_QUANTITY = BigDecimal.ONE;
 
+    @Setter
     private String center1;
+    @Setter
     private String center2;
 
 

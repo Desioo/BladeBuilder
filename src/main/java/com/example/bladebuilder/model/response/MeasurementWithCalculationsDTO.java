@@ -16,24 +16,35 @@ public class MeasurementWithCalculationsDTO extends Measurement {
     Knife knife;
     private BigDecimal fullSize = BigDecimal.ZERO;
     private List<Dimensions> dimensionsList;
-    private BigDecimal fullQuantities;
+    private BigDecimal fullQuantity;
 
     private BigDecimal knivesSize;
 
 
     private void countFullQuantity(){
-        fullQuantities = dimensionsList.stream()
+
+        fullQuantity = dimensionsList.stream()
+                .map(Dimensions::getQuantity)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+
     }
 
     private void countFullSize(){
-        for (int i = 0; i < sizes.size(); i++) {
-            fullSize = fullSize.add(sizes.get(i).multiply(quantities.get(i)));
-        }
+
+      fullSize = dimensionsList.stream()
+              .map((d) -> d.getQuantity().multiply(d.getSize()))
+              .reduce(BigDecimal.ZERO, BigDecimal::add);
+
     }
 
 
     public void countAllFromSeparatorAndKnife(){
+
+        countFullQuantity();
+        countFullSize();
+        separator.countCenter1();
+        separator.countCenter2();
+
 
     }
 }
