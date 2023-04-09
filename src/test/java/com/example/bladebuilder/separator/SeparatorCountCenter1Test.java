@@ -114,24 +114,28 @@ public class SeparatorCountCenter1Test {
         assertEquals(expected, result);
 
     }
-//
-//    @Test
-//    public void testCountCenter1_case6() {
-//
-//        String expected = "289.8";
-//        List<BigDecimal> quantities = List.of(new BigDecimal("1"), new BigDecimal("4"));
-//        List<BigDecimal> sizes = List.of(new BigDecimal("275.1"), new BigDecimal("226.1"));
-//
-//        Separator separator = new Separator();
-//        separator.setSizes(sizes);
-//        separator.setQuantities(quantities);
-//        separator.countFullSizeAndFullQuantity();
-//
-//        separator.countCenter1();
-//        String result = separator.getCenter1();
-//
-//        assertEquals(expected, result);
-//    }
+
+    @Test
+    public void testCountCenter1_case6() {
+
+        // given
+        String expected = "289.8";
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension("1", "275.1"));
+        dimensions.add(new Dimension("4", "226.1"));
+
+        MeasurementDetails measurementDetails = new MeasurementDetails();
+        measurementDetails.setDimensionsList(dimensions);
+
+        // when
+        measurementDetails.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementDetails);
+        separator.countCenter1();
+        String result = separator.getCenter1();
+
+        // then
+        assertEquals(expected, result);
+    }
 //
 //    @Test
 //    public void testCountCenter1_case7() {
