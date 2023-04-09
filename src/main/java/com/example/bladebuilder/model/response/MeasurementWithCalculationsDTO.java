@@ -5,21 +5,29 @@ import com.example.bladebuilder.model.calculate.Knife;
 import com.example.bladebuilder.model.entity.Measurement;
 import com.example.bladebuilder.model.calculate.Separator;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 public class MeasurementWithCalculationsDTO extends Measurement {
 
-    Separator separator;
-    Knife knife;
+    private final Separator separator;
+    private Knife knife;
     private BigDecimal fullSize = BigDecimal.ZERO;
     private List<Dimensions> dimensionsList;
     private BigDecimal fullQuantity;
 
     private BigDecimal knivesSize;
 
+    public MeasurementWithCalculationsDTO() {
+        super();
+        this.dimensionsList = new ArrayList<>();
+        this.separator = new Separator();
+        this.knife = new Knife();
+    }
 
     private void countFullQuantity(){
 
@@ -39,12 +47,9 @@ public class MeasurementWithCalculationsDTO extends Measurement {
 
 
     public void countAllFromSeparatorAndKnife(){
-
         countFullQuantity();
         countFullSize();
         separator.countCenter1();
         separator.countCenter2();
-
-
     }
 }
