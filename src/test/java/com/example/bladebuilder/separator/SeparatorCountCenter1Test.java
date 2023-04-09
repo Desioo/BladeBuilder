@@ -39,80 +39,81 @@ public class SeparatorCountCenter1Test {
     }
 
 
-//    @Test
-//    public void testCountCenter1_case2() {
-//
-//        String expected = "247.5";
-//        List<BigDecimal> quantities = List.of(new BigDecimal("3"), new BigDecimal("3"));
-//        List<BigDecimal> sizes = List.of(new BigDecimal("220"), new BigDecimal("200"));
-//
-//        Separator separator = new Separator();
-//        separator.setSizes(sizes);
-//        separator.setQuantities(quantities);
-//        separator.countFullSizeAndFullQuantity();
-//
-//
-//        separator.countCenter1();
-//        String result = separator.getCenter1();
-//
-//        assertEquals(expected, result);
-//    }
-//
-//    @Test
-//    public void testCountCenter1_case3() {
-//
-//        String expected = "770.0";
-//        List<BigDecimal> quantities = List.of(new BigDecimal("1"));
-//        List<BigDecimal> sizes = List.of(new BigDecimal("235"));
-//
-//        Separator separator = new Separator();
-//        separator.setSizes(sizes);
-//        separator.setQuantities(quantities);
-//        separator.countFullSizeAndFullQuantity();
-//
-//        separator.countCenter1();
-//        String result = separator.getCenter1();
-//
-//        assertEquals(expected, result);
-//    }
-//
-//    @Test
-//    public void testCountCenter1_case4() {
-//
-//        String expected = "135.5";
-//        List<BigDecimal> quantities = List.of(new BigDecimal("1"));
-//        List<BigDecimal> sizes = List.of(new BigDecimal("1504"));
-//
-//        Separator separator = new Separator();
-//        separator.setSizes(sizes);
-//        separator.setQuantities(quantities);
-//        separator.countFullSizeAndFullQuantity();
-//
-//
-//        separator.countCenter1();
-//        String result = separator.getCenter1();
-//
-//        assertEquals(expected, result);
-//    }
-//
-//    @Test
-//    public void testCountCenter1_case5() {
-//
-//        String expected = "277.5";
-//        List<BigDecimal> quantities = List.of(new BigDecimal("6"));
-//        List<BigDecimal> sizes = List.of(new BigDecimal("200"));
-//
-//        Separator separator = new Separator();
-//        separator.setSizes(sizes);
-//        separator.setQuantities(quantities);
-//        separator.countFullSizeAndFullQuantity();
-//
-//
-//        separator.countCenter1();
-//        String result = separator.getCenter1();
-//
-//        assertEquals(expected, result);
-//    }
+    @Test
+    public void testCountCenter1_case2() {
+
+        // given
+
+        String expected = "247.5";
+
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension("3", "220"));
+        dimensions.add(new Dimension("3", "200"));
+
+         MeasurementDetails measurementDetails = new MeasurementDetails();
+        measurementDetails.setDimensionsList(dimensions);
+
+        // when
+
+        measurementDetails.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementDetails);
+        separator.countCenter1();
+        String result = separator.getCenter1();
+
+        // then
+
+        assertEquals(expected, result);
+
+    }
+
+    @Test
+    public void testCountCenter1_case3() {
+
+        // given
+
+        String expected = "770.0";
+
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension("1", "235"));
+
+        MeasurementDetails measurementDetails = new MeasurementDetails();
+        measurementDetails.setDimensionsList(dimensions);
+
+        // when
+
+        measurementDetails.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementDetails);
+        separator.countCenter1();
+        String result = separator.getCenter1();
+
+        // then
+
+        assertEquals(expected, result);
+
+    }
+
+    @Test
+    public void testCountCenter1_case4() {
+
+        // given
+        String expected = "135.5";
+
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension("1", "1504"));
+
+        MeasurementDetails measurementDetails = new MeasurementDetails();
+        measurementDetails.setDimensionsList(dimensions);
+
+        // when
+        measurementDetails.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementDetails);
+        separator.countCenter1();
+        String result = separator.getCenter1();
+
+        // then
+        assertEquals(expected, result);
+
+    }
 //
 //    @Test
 //    public void testCountCenter1_case6() {
