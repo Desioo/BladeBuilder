@@ -3,7 +3,6 @@ package com.example.bladebuilder.separator;
 import com.example.bladebuilder.model.calculate.Dimension;
 import com.example.bladebuilder.model.calculate.MeasurementDetails;
 import com.example.bladebuilder.model.calculate.Separator;
-import com.example.bladebuilder.model.response.MeasurementWithCalculationsDTO;
 import org.junit.Test;
 
 import java.util.ArrayList;
