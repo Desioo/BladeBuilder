@@ -51,7 +51,7 @@ public class UserController {
         }
 
         User userWithNewName = user.get();
-        userWithNewName.setName(name);
+                userWithNewName.setName(name);
 
         userService.save(userWithNewName);
 
