@@ -21,7 +21,6 @@ public class AppConf implements WebMvcConfigurer {
                 .allowedHeaders("*");
     }
 
-
     public void addFormatters(FormatterRegistry registry) {
 
         registry.addConverter(getUserResponseDTOConverter());
@@ -38,15 +37,4 @@ public class AppConf implements WebMvcConfigurer {
     public UserConverter getUserConverter() {
         return new UserConverter();
     }
-
-    @Bean
-    public Separator getSeparator() {
-        return new Separator();
-    }
-
-    @Bean
-    public Knife getKnife() {
-        return new Knife();
-    }
-
 }

@@ -1,10 +1,11 @@
 package com.example.bladebuilder.separator;
 
-import com.example.bladebuilder.model.calculate.Dimensions;
+import com.example.bladebuilder.model.calculate.Dimension;
+import com.example.bladebuilder.model.calculate.MeasurementDetails;
+import com.example.bladebuilder.model.calculate.Separator;
 import com.example.bladebuilder.model.response.MeasurementWithCalculationsDTO;
 import org.junit.Test;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,16 +20,18 @@ public class SeparatorCountCenter1Test {
 
         String expected = "411.5";
 
-        List<Dimensions> dimensions = new ArrayList<>();
-        dimensions.add(new Dimensions("4", "235"));
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension("4", "235"));
 
-        MeasurementWithCalculationsDTO calculationsDTO = new MeasurementWithCalculationsDTO();
-        calculationsDTO.setDimensionsList(dimensions);
+        MeasurementDetails measurementDetails = new MeasurementDetails();
+        measurementDetails.setDimensionsList(dimensions);
 
         // when
 
-        calculationsDTO.countAllFromSeparatorAndKnife();
-        String result = calculationsDTO.getSeparator().getCenter1();
+        measurementDetails.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementDetails);
+        separator.countCenter1();
+        String result = separator.getCenter1();
 
         // then
 
