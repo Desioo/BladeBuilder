@@ -1,8 +1,8 @@
 package com.example.bladebuilder.separator;
 
 import com.example.bladebuilder.model.calculate.Dimension;
-import com.example.bladebuilder.model.calculate.MeasurementDetails;
 import com.example.bladebuilder.model.calculate.Separator;
+import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -22,13 +22,13 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("4", "235"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
 
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
         separator.countCenter1();
         String result = separator.getCenter1();
 
@@ -50,13 +50,13 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("3", "220"));
         dimensions.add(new Dimension("3", "200"));
 
-         MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
 
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
         separator.countCenter1();
         String result = separator.getCenter1();
 
@@ -76,13 +76,13 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("1", "235"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
 
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
         separator.countCenter1();
         String result = separator.getCenter1();
 
@@ -101,12 +101,12 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("1", "1504"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
         separator.countCenter1();
         String result = separator.getCenter1();
 
@@ -124,12 +124,13 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("1", "275.1"));
         dimensions.add(new Dimension("4", "226.1"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+
         separator.countCenter1();
         String result = separator.getCenter1();
 
@@ -149,10 +150,10 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("1", "98.9"));
         dimensions.add(new Dimension("4", "133.9"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
 
@@ -176,11 +177,10 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("1", "98.9"));
         dimensions.add(new Dimension("4", "133.9"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
 
@@ -202,10 +202,10 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("3", "320"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
 
@@ -225,10 +225,10 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("3", "335.2"));
         dimensions.add(new Dimension("1", "183.1"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();
@@ -245,10 +245,10 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("4", "370"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();
@@ -265,10 +265,10 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("1", "1217"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();
@@ -285,10 +285,10 @@ public void testCountCenter1_case13() {
     List<Dimension> dimensions = new ArrayList<>();
     dimensions.add(new Dimension("5", "254"));
 
-    MeasurementDetails measurementDetails = new MeasurementDetails();
-    measurementDetails.setDimensionsList(dimensions);
-    measurementDetails.countFullSizeAndFullQuantity();
-    Separator separator = new Separator(measurementDetails);
+    MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+    measurementRequestDTO.setDimensionsList(dimensions);
+    measurementRequestDTO.countFullSizeAndFullQuantity();
+    Separator separator = new Separator(measurementRequestDTO);
 
     // when
     separator.countCenter1();
@@ -306,10 +306,10 @@ public void testCountCenter1_case13() {
         dimensions.add(new Dimension("1", "162.2"));
         dimensions.add(new Dimension("9", "115.2"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();
@@ -328,10 +328,10 @@ public void testCountCenter1_case13() {
         dimensions.add(new Dimension("1", "375.2"));
         dimensions.add(new Dimension("2", "204.1"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();
@@ -348,10 +348,10 @@ public void testCountCenter1_case13() {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("1", "1178"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();
@@ -371,10 +371,10 @@ public void testCountCenter1_case13() {
         dimensions.add(new Dimension("1", "207"));
         dimensions.add(new Dimension("2", "187"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();
@@ -391,10 +391,10 @@ public void testCountCenter1_case13() {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("1", "1200"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();
@@ -412,10 +412,10 @@ public void testCountCenter1_case13() {
         dimensions.add(new Dimension("2", "470"));
         dimensions.add(new Dimension("1", "370"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();
@@ -434,10 +434,10 @@ public void testCountCenter1_case13() {
         dimensions.add(new Dimension("1", "305"));
         dimensions.add(new Dimension("1", "145"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();
@@ -454,10 +454,10 @@ public void testCountCenter1_case13() {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("10", "125"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();
@@ -474,10 +474,10 @@ public void testCountCenter1_case13() {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("10", "130"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();
@@ -495,10 +495,10 @@ public void testCountCenter1_case13() {
         dimensions.add(new Dimension("4", "260"));
         dimensions.add(new Dimension("1", "215"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();
@@ -515,10 +515,10 @@ public void testCountCenter1_case13() {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("1", "1194"));
 
-        MeasurementDetails measurementDetails = new MeasurementDetails();
-        measurementDetails.setDimensionsList(dimensions);
-        measurementDetails.countFullSizeAndFullQuantity();
-        Separator separator = new Separator(measurementDetails);
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter1();

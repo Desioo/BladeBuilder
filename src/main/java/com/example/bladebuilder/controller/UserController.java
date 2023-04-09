@@ -39,7 +39,7 @@ public class UserController {
         if (user.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        userService.removeByUser(user.get());
+        userService.remove(user.get());
         return ResponseEntity.ok("User removed");
     }
 

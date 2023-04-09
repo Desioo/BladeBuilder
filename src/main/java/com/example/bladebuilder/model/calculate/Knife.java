@@ -1,5 +1,6 @@
 package com.example.bladebuilder.model.calculate;
 
+import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -7,7 +8,7 @@ import java.math.RoundingMode;
 import java.util.Collections;
 import java.util.List;
 
-public class Knife extends MeasurementDetails implements CenterCalculator {
+public class Knife extends MeasurementRequestDTO implements CenterCalculator {
     private static final BigDecimal FULL_SHAFT_SIZE = new BigDecimal("1740");
     private static final BigDecimal CENTER_DIVIDER = new BigDecimal("2");
     private static final BigDecimal DOUBLE = new BigDecimal("2");

@@ -39,7 +39,7 @@ public class MeasurementService implements ServiceInterface<Measurement> {
     }
 
     public MeasurementWithCalculationsDTO count(MeasurementRequestDTO measurementRequestDTO){
-
+        return null;
     }
 
 }

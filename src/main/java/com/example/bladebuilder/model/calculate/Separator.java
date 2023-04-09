@@ -1,11 +1,12 @@
 package com.example.bladebuilder.model.calculate;
 
+import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Separator extends MeasurementDetails implements CenterCalculator{
+public class Separator extends MeasurementRequestDTO implements CenterCalculator{
 
     private static final BigDecimal FULL_SHAFT_SIZE = new BigDecimal("1775");
     private static final BigDecimal CENTER_DIVIDER = new BigDecimal("2");
@@ -19,9 +20,9 @@ public class Separator extends MeasurementDetails implements CenterCalculator{
     private String center2;
 
 
-    public Separator(MeasurementDetails measurementDetails){
-        this.setFullQuantity(measurementDetails.getFullQuantity());
-        this.setFullSize(measurementDetails.getFullSize());
+    public Separator(MeasurementRequestDTO measurementRequestDTO){
+        this.setFullQuantity(measurementRequestDTO.getFullQuantity());
+        this.setFullSize(measurementRequestDTO.getFullSize());
     }
 
     @Override
