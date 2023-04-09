@@ -36,7 +36,7 @@ public class MeasurementConverter implements Converter<MeasurementRequestDTO, Me
             dimensionsWithQuantity.append("X");
             dimensionsWithQuantity.append(dimensions.get(i).getSize());
 
-            if (i > dimensions.size() - 1) {
+            if (i < dimensions.size() - 1) {
                 dimensionsWithQuantity.append(" + ");
             }
         }
