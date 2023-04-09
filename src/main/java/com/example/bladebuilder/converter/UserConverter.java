@@ -1,6 +1,6 @@
 package com.example.bladebuilder.converter;
 
-import com.example.bladebuilder.model.User;
+import com.example.bladebuilder.model.entity.User;
 import com.example.bladebuilder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;

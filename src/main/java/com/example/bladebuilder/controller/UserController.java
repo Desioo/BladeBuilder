@@ -1,7 +1,7 @@
 package com.example.bladebuilder.controller;
 
 import com.example.bladebuilder.converter.UserResponseDTOConverter;
-import com.example.bladebuilder.model.User;
+import com.example.bladebuilder.model.entity.User;
 import com.example.bladebuilder.model.response.UserResponseDTO;
 import com.example.bladebuilder.service.UserService;
 import com.example.bladebuilder.utils.ConverterUtils;

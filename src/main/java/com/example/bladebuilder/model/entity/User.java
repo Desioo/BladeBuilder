@@ -1,4 +1,4 @@
-package com.example.bladebuilder.model;
+package com.example.bladebuilder.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

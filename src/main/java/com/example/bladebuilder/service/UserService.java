@@ -1,6 +1,6 @@
 package com.example.bladebuilder.service;
 
-import com.example.bladebuilder.model.User;
+import com.example.bladebuilder.model.entity.User;
 import com.example.bladebuilder.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

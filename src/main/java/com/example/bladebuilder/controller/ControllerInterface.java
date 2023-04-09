@@ -4,10 +4,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-public interface ControllerInterface<O> {
+public interface ControllerInterface<O, R> {
 
     @GetMapping("/{o}")
-    String get(@PathVariable O o);
+    R get(@PathVariable O o);
 
     @PostMapping("")
     String add(@RequestBody O o);
@@ -19,6 +19,6 @@ public interface ControllerInterface<O> {
     String edit(@PathVariable O o, @RequestBody String value);
 
     @GetMapping("/all")
-    List<O> findAll();
+    List<R> findAll();
 
 }
