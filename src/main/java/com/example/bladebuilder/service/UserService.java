@@ -20,13 +20,8 @@ public class UserService implements ServiceInterface<User> {
     }
 
     @Override
-    public void remove(Long id) {
-        Optional<User> userOptional = findById(id);
-        userOptional.ifPresent(userRepository::delete);
-    }
-
-    public void removeByUser(User user){
-        userRepository.delete(user);
+    public void remove(User o) {
+       userRepository.delete(o);
     }
 
     @Override

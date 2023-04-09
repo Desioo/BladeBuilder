@@ -7,7 +7,7 @@ public interface ServiceInterface<O> {
 
     void save(O o);
 
-    void remove(Long id);
+    void remove(O o);
 
     Optional<O> findById(Long id);
 

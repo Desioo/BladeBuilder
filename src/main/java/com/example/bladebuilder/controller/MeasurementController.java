@@ -1,5 +1,6 @@
 package com.example.bladebuilder.controller;
 
+import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import com.example.bladebuilder.model.response.MeasurementWithCalculationsDTO;
 import com.example.bladebuilder.service.MeasurementService;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +17,8 @@ public class MeasurementController {
     private final MeasurementService measurementService;
 
     @PostMapping("")
-    public MeasurementWithCalculationsDTO count(@RequestBody ){
-
+    public MeasurementWithCalculationsDTO count(@RequestBody MeasurementRequestDTO measurementRequestDTO){
+        return null;
     }
 
 }
