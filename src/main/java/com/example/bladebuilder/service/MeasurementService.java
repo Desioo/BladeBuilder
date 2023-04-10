@@ -42,7 +42,9 @@ public class MeasurementService implements ServiceInterface<Measurement> {
 
     public MeasurementWithCalculationsDTO count(MeasurementRequestDTO measurementRequestDTO){
 
-        MeasurementWithCalculationsDTO responseDto = new MeasurementWithCalculationsDTO(measurementRequestDTO);
+        Measurement measurement = measurementConverter.convert(measurementRequestDTO);
+        save(measurement);
+        MeasurementWithCalculationsDTO responseDto = new MeasurementWithCalculationsDTO(measurementRequestDTO, measurement);
         return responseDto;
     }
 }

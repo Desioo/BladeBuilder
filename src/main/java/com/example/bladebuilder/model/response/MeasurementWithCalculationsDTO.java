@@ -15,13 +15,13 @@ public class MeasurementWithCalculationsDTO {
     private final Knife knife;
     private final Measurement measurement;
 
-    public MeasurementWithCalculationsDTO(MeasurementRequestDTO measurementRequestDTO){
+    public MeasurementWithCalculationsDTO(MeasurementRequestDTO measurementRequestDTO, Measurement measurement){
 
         measurementRequestDTO.countFullSizeAndFullQuantity();
 
         this.separator = new Separator(measurementRequestDTO);
         this.knife = new Knife(measurementRequestDTO);
-        this.measurement = new MeasurementConverter().convert(measurementRequestDTO);
+        this.measurement = measurement;
 
         countAll();
     }
