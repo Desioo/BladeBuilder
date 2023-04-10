@@ -42,7 +42,7 @@ public class MeasurementConverter implements Converter<MeasurementRequestDTO, Me
         for (int i = 0; i < dimensions.size(); i++) {
 
             dimensionsWithQuantity.append(dimensions.get(i).getQuantity());
-            dimensionsWithQuantity.append("X");
+            dimensionsWithQuantity.append(" X ");
             dimensionsWithQuantity.append(dimensions.get(i).getSize());
 
             if (i < dimensions.size() - 1) {

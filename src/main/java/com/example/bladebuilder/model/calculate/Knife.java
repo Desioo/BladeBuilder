@@ -3,7 +3,6 @@ package com.example.bladebuilder.model.calculate;
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
