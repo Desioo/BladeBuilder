@@ -12,6 +12,24 @@ import static org.junit.Assert.assertEquals;
 
 public class SeparatorCountCenter1Test {
 
+    private void createAllAndCheckResult(String expected, List<Dimension> dimensions) {
+
+        // given
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+
+        Separator separator = new Separator(measurementRequestDTO);
+
+        // when
+        separator.countCenter1();
+        String result = separator.getCenter1();
+
+        // then
+        assertEquals(expected, result);
+
+    }
+
     @Test
     public void testCountCenter1_case1() {
 
@@ -21,24 +39,12 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("4", "235"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
-
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
+        createAllAndCheckResult(expected, dimensions);
 
     }
 
-
     @Test
-    public void testCountCenter1_case2() {
+    public void testCountCenter2_case2() {
 
         // given
         String expected = "247.5";
@@ -47,23 +53,12 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("3", "220"));
         dimensions.add(new Dimension("3", "200"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
-
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
+        createAllAndCheckResult(expected, dimensions);
 
     }
 
     @Test
-    public void testCountCenter1_case3() {
+    public void testCountCenter2_case3() {
 
         // given
         String expected = "770.0";
@@ -71,23 +66,12 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("1", "235"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
-
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
+        createAllAndCheckResult(expected, dimensions);
 
     }
 
     @Test
-    public void testCountCenter1_case4() {
+    public void testCountCenter2_case4() {
 
         // given
         String expected = "135.5";
@@ -95,23 +79,12 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("1", "1504"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
-
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
+        createAllAndCheckResult(expected, dimensions);
 
     }
 
     @Test
-    public void testCountCenter1_case5() {
+    public void testCountCenter2_case5() {
 
         // given
         String expected = "277.5";
@@ -119,46 +92,24 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("6", "200"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
-
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
+        createAllAndCheckResult(expected, dimensions);
 
     }
 
     @Test
-    public void testCountCenter1_case6() {
+    public void testCountCenter2_case6() {
 
         // given
         String expected = "201.2";
+
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("2", "684.3"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
-
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
+        createAllAndCheckResult(expected, dimensions);
     }
-    //
 
     @Test
-    public void testCountCenter1_case7() {
+    public void testCountCenter2_case7() {
 
         //given
         String expected = "286.4";
@@ -168,22 +119,12 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("1", "98.9"));
         dimensions.add(new Dimension("4", "133.9"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
-    public void testCountCenter1_case8() {
+    public void testCountCenter2_case8() {
 
         // given
         String expected = "200.9";
@@ -191,22 +132,12 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("4", "340.3"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
-    public void testCountCenter1_case9() {
+    public void testCountCenter2_case9() {
 
         //given
         String expected = "403.5";
@@ -214,22 +145,12 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("3", "320"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
-    public void testCountCenter1_case10() {
+    public void testCountCenter2_case10() {
 
         // given
         String expected = "287.1";
@@ -238,40 +159,21 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("3", "335.2"));
         dimensions.add(new Dimension("1", "183.1"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
-    public void testCountCenter1_case11() {
+    public void testCountCenter2_case11() {
 
         // given
         String expected = "141.5";
+
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("4", "370"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
@@ -283,18 +185,8 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("1", "1217"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
@@ -306,18 +198,8 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("5", "254"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
@@ -330,18 +212,8 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("1", "162.2"));
         dimensions.add(new Dimension("9", "115.2"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
@@ -355,18 +227,8 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("1", "375.2"));
         dimensions.add(new Dimension("2", "204.1"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
@@ -378,18 +240,8 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("1", "1178"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
@@ -404,18 +256,8 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("1", "207"));
         dimensions.add(new Dimension("2", "187"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
@@ -427,18 +269,8 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("1", "1200"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
@@ -451,18 +283,8 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("2", "470"));
         dimensions.add(new Dimension("1", "370"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
@@ -476,18 +298,8 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("1", "305"));
         dimensions.add(new Dimension("1", "145"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
@@ -499,18 +311,8 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("10", "125"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
@@ -522,18 +324,8 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("10", "130"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
@@ -546,18 +338,8 @@ public class SeparatorCountCenter1Test {
         dimensions.add(new Dimension("4", "260"));
         dimensions.add(new Dimension("1", "215"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 
     @Test
@@ -569,18 +351,7 @@ public class SeparatorCountCenter1Test {
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("1", "1194"));
 
-        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
-        measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        createAllAndCheckResult(expected, dimensions);
 
-        Separator separator = new Separator(measurementRequestDTO);
-
-        // when
-        separator.countCenter1();
-        String result = separator.getCenter1();
-
-        // then
-        assertEquals(expected, result);
     }
 }
-
