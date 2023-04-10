@@ -8,18 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 
 public class MeasurementConverter implements Converter<MeasurementRequestDTO, Measurement> {
+
     @Autowired
     private UserService userService;
-
-    private final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-    private final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
 
     @Override
     public Measurement convert(MeasurementRequestDTO requestDTO) {
@@ -49,18 +45,6 @@ public class MeasurementConverter implements Converter<MeasurementRequestDTO, Me
                 dimensionsWithQuantity.append(" + ");
             }
         }
-
         return dimensionsWithQuantity.toString();
-
     }
-
-    private void setDataAndTime(Measurement measurement){
-
-        LocalDateTime localDateTime = LocalDateTime.now();
-
-        measurement.setDate(LocalDate.parse(localDateTime.format(DATE_FORMATTER), DATE_FORMATTER));
-        measurement.setTime(LocalTime.parse(localDateTime.format(TIME_FORMATTER), TIME_FORMATTER));
-
-    }
-
 }
