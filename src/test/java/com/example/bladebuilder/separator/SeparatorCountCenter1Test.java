@@ -107,6 +107,29 @@ public class SeparatorCountCenter1Test {
     }
 
     @Test
+    public void testCountCenter1_case5() {
+
+        // given
+        String expected = "277.5";
+
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension("6", "200"));
+
+        MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
+        measurementRequestDTO.setDimensionsList(dimensions);
+        measurementRequestDTO.countFullSizeAndFullQuantity();
+        Separator separator = new Separator(measurementRequestDTO);
+
+        // when
+        separator.countCenter1();
+        String result = separator.getCenter1();
+
+        // then
+        assertEquals(expected, result);
+
+    }
+
+    @Test
     public void testCountCenter1_case6() {
 
         // given
