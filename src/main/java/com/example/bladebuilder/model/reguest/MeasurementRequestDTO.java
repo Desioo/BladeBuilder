@@ -13,8 +13,12 @@ public class MeasurementRequestDTO {
     private BigDecimal knivesSize;
     private BigDecimal thickness;
     private String userPassword;
+    private BigDecimal z;
+
     private BigDecimal fullQuantity;
     private BigDecimal fullSize;
+    private BigDecimal scrap;
+    private BigDecimal scrapCorrection;
 
 
     private void countFullQuantity(){

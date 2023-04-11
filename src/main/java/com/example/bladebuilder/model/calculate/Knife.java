@@ -31,6 +31,7 @@ public class Knife implements CenterCalculator {
         result = result.subtract(measurementRequestDTO.getFullSize()).divide(CENTER_DIVIDER, 0, RoundingMode.HALF_EVEN);
 
         center1 = String.valueOf(result);
+
     }
 
     @Override
