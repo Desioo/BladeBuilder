@@ -35,8 +35,8 @@ public class MeasurementWithCalculationsDTO {
 
     private <O extends CenterCalculator> void  countCenters(O o){
 
-        o.countCenter1();
         o.countCenter2();
+        o.countCenter1();
 
     }
 

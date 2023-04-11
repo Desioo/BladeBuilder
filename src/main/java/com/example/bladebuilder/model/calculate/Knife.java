@@ -19,32 +19,32 @@ public class Knife implements CenterCalculator {
 
     private final MeasurementRequestDTO measurementRequestDTO;
     @Getter
-    private String center1;
+    private List<String> center1;
     @Getter
-    private List<String> center2;
+    private String center2;
 
     @Override
-    public void countCenter1() {
+    public void countCenter2() {
 
         BigDecimal result = FULL_SHAFT_SIZE;
 
         result = result.subtract(measurementRequestDTO.getFullSize()).divide(CENTER_DIVIDER, 0, RoundingMode.HALF_EVEN);
 
-        center1 = String.valueOf(result);
+        center2 = String.valueOf(result);
 
     }
 
     @Override
-    public void countCenter2() {
+    public void countCenter1() {
 
-        BigDecimal result = new BigDecimal(center1);
+        BigDecimal result = new BigDecimal(center2);
 
         result = result.subtract(measurementRequestDTO.getKnivesSize());
         result = result.subtract(measurementRequestDTO.getThickness().multiply(TEN_PERCENT));
         result = result.subtract(KNIFE_CORRECTION);
         result = result.setScale(2, RoundingMode.HALF_EVEN).stripTrailingZeros();
 
-        center2 = Collections.singletonList(String.valueOf(result));
+        center1 = Collections.singletonList(String.valueOf(result));
 
     }
 }

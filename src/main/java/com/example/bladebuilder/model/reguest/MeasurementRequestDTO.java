@@ -13,7 +13,7 @@ public class MeasurementRequestDTO {
     private BigDecimal knivesSize;
     private BigDecimal thickness;
     private String userPassword;
-    private BigDecimal z;
+    private BigDecimal actualWidth;
 
     private BigDecimal fullQuantity;
     private BigDecimal fullSize;
