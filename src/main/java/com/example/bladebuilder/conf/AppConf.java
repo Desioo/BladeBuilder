@@ -1,6 +1,7 @@
 package com.example.bladebuilder.conf;
 
 import com.example.bladebuilder.converter.MeasurementConverter;
+import com.example.bladebuilder.converter.MeasurementDetailsConverter;
 import com.example.bladebuilder.converter.UserConverter;
 import com.example.bladebuilder.converter.UserResponseDTOConverter;
 import org.springframework.context.annotation.Bean;
@@ -41,5 +42,10 @@ public class AppConf implements WebMvcConfigurer {
     @Bean
     public MeasurementConverter getMeasurementConverter() {
         return new MeasurementConverter();
+    }
+
+    @Bean
+    public MeasurementDetailsConverter getMeasurementDetailsConverter() {
+        return new MeasurementDetailsConverter();
     }
 }

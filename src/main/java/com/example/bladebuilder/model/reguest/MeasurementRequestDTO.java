@@ -17,7 +17,7 @@ public class MeasurementRequestDTO {
 
     private BigDecimal fullQuantity;
     private BigDecimal fullSize;
-    private BigDecimal scrap;
+    private BigDecimal scrap = BigDecimal.ZERO;
     private BigDecimal scrapCorrection;
 
 
