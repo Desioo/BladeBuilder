@@ -17,8 +17,8 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionT
     private static final BigDecimal KNIFE_CORRECTION = new BigDecimal("0.04");
     private static final BigDecimal TEN_PERCENT = new BigDecimal("0.1");
 
-    private BigDecimal distanceThree = new BigDecimal("3");
-    private BigDecimal distanceFive = new BigDecimal("5");
+    private BigDecimal distanceThree;
+    private BigDecimal distanceFive;
 
     private final MeasurementRequestDTO measurementRequestDTO;
     @Getter
@@ -26,9 +26,9 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionT
     @Getter
     private BigDecimal centerBottom;
     @Getter
-    private List<List<BigDecimal>> topSizesList;
+    private List<List<BigDecimal>> topSizesList = new ArrayList<>();
     @Getter
-    private List<List<BigDecimal>> bottomSizesList;
+    private List<List<BigDecimal>> bottomSizesList = new ArrayList<>();
 
     @Override
     public void countCenter2() {
@@ -52,6 +52,9 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionT
 
     @Override
     public List<BigDecimal> mapSizeToDistance(BigDecimal size) {
+
+        distanceThree = new BigDecimal("3");
+        distanceFive = new BigDecimal("5");
 
         String sizeToString = size.toString();
         List<BigDecimal> sizeWithDistances = new ArrayList<>();
@@ -113,7 +116,7 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionT
     public BigDecimal subtractKnifeAndThicknessFromSize(BigDecimal size) {
 
         return size.subtract(DOUBLE.multiply(measurementRequestDTO.getKnivesSize()))
-                .subtract(measurementRequestDTO.getThickness());
+                .subtract(measurementRequestDTO.getThickness().multiply(TEN_PERCENT));
 
     }
 }
