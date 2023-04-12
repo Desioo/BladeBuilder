@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class Knife implements CenterCalculator, SizeToDistanceMapper {
+public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionToTopAndBottomListMapper{
     private static final BigDecimal FULL_SHAFT_SIZE = new BigDecimal("1740");
     private static final BigDecimal CENTER_DIVIDER = new BigDecimal("2");
     private static final BigDecimal DOUBLE = new BigDecimal("2");
@@ -22,14 +22,17 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper {
 
     private final MeasurementRequestDTO measurementRequestDTO;
     @Getter
-    private List<BigDecimal> center1;
+    private List<BigDecimal> centerTop;
     @Getter
-    private BigDecimal center2;
+    private BigDecimal centerBottom;
+
+    private List<List<BigDecimal>> sizesListTop;
+    private List<List<BigDecimal>> sizesListBottom;
 
     @Override
     public void countCenter2() {
 
-        center2 = FULL_SHAFT_SIZE.subtract(measurementRequestDTO.getFullSize())
+        centerBottom = FULL_SHAFT_SIZE.subtract(measurementRequestDTO.getFullSize())
                 .divide(CENTER_DIVIDER, 0, RoundingMode.HALF_EVEN);
 
     }
@@ -37,12 +40,12 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper {
     @Override
     public void countCenter1() {
 
-        BigDecimal result = center2.subtract(measurementRequestDTO.getKnivesSize())
+        BigDecimal result = centerBottom.subtract(measurementRequestDTO.getKnivesSize())
                 .subtract(measurementRequestDTO.getThickness().multiply(TEN_PERCENT))
                 .subtract(KNIFE_CORRECTION)
                 .setScale(2, RoundingMode.HALF_EVEN).stripTrailingZeros();
 
-        center1 = mapSizeToDistance(result);
+        centerTop = mapSizeToDistance(result);
 
     }
 
@@ -78,5 +81,15 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper {
             list.add(distance);
         }
 
+    }
+
+    @Override
+    public void mapDimensionsToTopAndBottomByRepeating(List<Dimension> dimensions) {
+
+    }
+
+    @Override
+    public BigDecimal subtractKnifeAndThicknessFromSize(BigDecimal size) {
+        return null;
     }
 }
