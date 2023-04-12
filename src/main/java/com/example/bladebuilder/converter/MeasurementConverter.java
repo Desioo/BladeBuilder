@@ -19,13 +19,15 @@ public class MeasurementConverter implements Converter<MeasurementRequestDTO, Me
 
     @Autowired
     private UserService userService;
-    //TODO strefa czasowa
-    private final ZonedDateTime warsawDateTime = ZonedDateTime.now(ZoneId.of("Europe/Warsaw"));
+
+
 
     @Override
     public Measurement convert(MeasurementRequestDTO requestDTO) {
 
         Measurement measurement = new Measurement();
+        //TODO strefa czasowa
+        ZonedDateTime warsawDateTime = ZonedDateTime.now(ZoneId.of("Europe/Warsaw"));
 
         measurement.setThickness(String.valueOf(requestDTO.getThickness()));
         measurement.setUserName(userService.getUserNameByPassword(requestDTO.getUserPassword()));
