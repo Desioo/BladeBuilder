@@ -48,9 +48,14 @@ public class MeasurementService implements ServiceInterface<Measurement> {
 
         measurementRequestDTO.countSizeQuantityAndScrap();
 
-        System.out.println(measurementRequestDTO);
-
         Measurement measurement = measurementConverter.convert(measurementRequestDTO);
+
+        //TODO walidacja
+
+        if(measurement.getUserName().equals("")){
+            throw new  NullPointerException("userName");
+        }
+
         save(measurement);
         MeasurementDetails measurementDetails = measurementDetailsConverter.convert(measurementRequestDTO);
 
