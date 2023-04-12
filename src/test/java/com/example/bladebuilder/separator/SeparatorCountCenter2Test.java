@@ -5,6 +5,7 @@ import com.example.bladebuilder.model.calculate.Separator;
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,16 +18,16 @@ public class SeparatorCountCenter2Test {
         // given
         MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
         measurementRequestDTO.setDimensionsList(dimensions);
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        measurementRequestDTO.countSizeQuantityAndScrap();
 
         Separator separator = new Separator(measurementRequestDTO);
 
         // when
         separator.countCenter2();
-        String result = separator.getCenter2();
+        BigDecimal result = separator.getCenter2();
 
         // then
-        assertEquals(expected, result);
+        assertEquals(new BigDecimal(expected), result);
 
     }
 

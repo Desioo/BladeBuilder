@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @RequiredArgsConstructor
-public class Separator implements CenterCalculator{
+public class Separator implements CenterCalculator {
 
     private static final BigDecimal FULL_SHAFT_SIZE = new BigDecimal("1775");
     private static final BigDecimal CENTER_DIVIDER = new BigDecimal("2");
@@ -17,25 +17,26 @@ public class Separator implements CenterCalculator{
     private static final BigDecimal REDUCE_QUANTITY = BigDecimal.ONE;
     private final MeasurementRequestDTO measurementRequestDTO;
     @Getter
-    private String center1;
+    private BigDecimal center1;
     @Getter
-    private String center2;
+    private BigDecimal center2;
 
     @Override
-    public void countCenter1() {center1 = countCenter(CORRECTION_FOR_CENTER_1);}
+    public void countCenter1() {
+        center1 = countCenter(CORRECTION_FOR_CENTER_1);
+    }
 
     @Override
-    public void countCenter2() {center2 = countCenter(CORRECTION_FOR_CENTER_2);}
+    public void countCenter2() {
+        center2 = countCenter(CORRECTION_FOR_CENTER_2);
+    }
 
-    private String countCenter(BigDecimal correction) {
+    private BigDecimal countCenter(BigDecimal correction) {
 
-        BigDecimal result = FULL_SHAFT_SIZE;
-
-        result = result.subtract(measurementRequestDTO.getFullSize());
-        result = result.subtract((measurementRequestDTO.getFullQuantity().subtract(REDUCE_QUANTITY)).multiply(correction));
-        result = result.divide(CENTER_DIVIDER, 1, RoundingMode.HALF_EVEN);
-
-        return String.valueOf(result);
+        return FULL_SHAFT_SIZE.subtract(measurementRequestDTO.getFullSize())
+                .subtract((measurementRequestDTO.getFullQuantity().subtract(REDUCE_QUANTITY)).multiply(correction))
+                .divide(CENTER_DIVIDER, 1, RoundingMode.HALF_EVEN)
+                .subtract(measurementRequestDTO.getScrapCorrection());
 
     }
 

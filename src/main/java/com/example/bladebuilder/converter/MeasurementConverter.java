@@ -9,6 +9,9 @@ import org.springframework.core.convert.converter.Converter;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 
@@ -16,6 +19,8 @@ public class MeasurementConverter implements Converter<MeasurementRequestDTO, Me
 
     @Autowired
     private UserService userService;
+    //TODO strefa czasowa
+    private final ZonedDateTime warsawDateTime = ZonedDateTime.now(ZoneId.of("Europe/Warsaw"));
 
     @Override
     public Measurement convert(MeasurementRequestDTO requestDTO) {
@@ -25,8 +30,8 @@ public class MeasurementConverter implements Converter<MeasurementRequestDTO, Me
         measurement.setThickness(String.valueOf(requestDTO.getThickness()));
         measurement.setUserName(userService.getUserNameByPassword(requestDTO.getUserPassword()));
         measurement.setDimensionsWithQuantity(changeDimensionsToText(requestDTO.getDimensionsList()));
-        measurement.setDate(LocalDate.now());
-        measurement.setTime(LocalTime.now());
+        measurement.setDate(warsawDateTime.toLocalDate());
+        measurement.setTime(warsawDateTime.toLocalTime());
 
         return measurement;
     }

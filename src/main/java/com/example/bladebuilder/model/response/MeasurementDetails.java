@@ -9,5 +9,6 @@ public class MeasurementDetails {
 
     private BigDecimal fullSize;
     private BigDecimal scrap;
+    private BigDecimal knivesSize;
 
 }

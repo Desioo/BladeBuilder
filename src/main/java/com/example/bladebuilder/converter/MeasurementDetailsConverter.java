@@ -14,6 +14,7 @@ public class MeasurementDetailsConverter implements Converter<MeasurementRequest
 
         measurementDetails.setFullSize(measurementRequestDTO.getFullSize());
         measurementDetails.setScrap(measurementRequestDTO.getScrap());
+        measurementDetails.setKnivesSize(measurementRequestDTO.getKnivesSize());
 
         return measurementDetails;
 

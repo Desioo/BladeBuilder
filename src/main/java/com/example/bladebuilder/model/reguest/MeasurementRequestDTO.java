@@ -4,7 +4,9 @@ import com.example.bladebuilder.model.calculate.Dimension;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 public class MeasurementRequestDTO {
@@ -18,7 +20,9 @@ public class MeasurementRequestDTO {
     private BigDecimal fullQuantity;
     private BigDecimal fullSize;
     private BigDecimal scrap = BigDecimal.ZERO;
-    private BigDecimal scrapCorrection;
+    private BigDecimal scrapCorrection = BigDecimal.ZERO;
+    private static final BigDecimal SMALL_SCRAP = new BigDecimal("6");
+    private static final BigDecimal SCRAP_DIVIDER = new BigDecimal("2");
 
 
     private void countFullQuantity(){
@@ -37,9 +41,19 @@ public class MeasurementRequestDTO {
 
     }
 
-    public void countFullSizeAndFullQuantity(){
+    private void countScrap(){
+
+        if(Objects.nonNull(actualWidth)){
+            scrap = actualWidth.subtract(fullSize).subtract(SMALL_SCRAP);
+            scrapCorrection = scrap.subtract(SMALL_SCRAP).divide(SCRAP_DIVIDER, 0, RoundingMode.DOWN);
+        }
+
+    }
+
+    public void countSizeQuantityAndScrap(){
         countFullSize();
         countFullQuantity();
+        countScrap();
     }
 
 }
