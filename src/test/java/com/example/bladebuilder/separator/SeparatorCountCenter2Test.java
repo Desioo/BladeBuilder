@@ -27,7 +27,7 @@ public class SeparatorCountCenter2Test {
         BigDecimal result = separator.getCenter2();
 
         // then
-        assertEquals(expected, result);
+        assertEquals(new BigDecimal(expected), result);
 
     }
 
