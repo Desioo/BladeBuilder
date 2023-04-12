@@ -7,7 +7,6 @@ import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import com.example.bladebuilder.model.response.MeasurementDetails;
 import com.example.bladebuilder.model.response.MeasurementWithCalculationsDTO;
 import com.example.bladebuilder.repository.MeasurementRepository;
-import com.example.bladebuilder.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
@@ -47,7 +46,9 @@ public class MeasurementService implements ServiceInterface<Measurement> {
 
         //TODO
 
-        measurementRequestDTO.countFullSizeAndFullQuantity();
+        measurementRequestDTO.countSizeQuantityAndScrap();
+
+        System.out.println(measurementRequestDTO);
 
         Measurement measurement = measurementConverter.convert(measurementRequestDTO);
         save(measurement);
