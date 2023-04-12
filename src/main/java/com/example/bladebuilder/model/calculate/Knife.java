@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionToTopAndBottomListMapper{
+public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionToTopAndBottomListMapper {
     private static final BigDecimal FULL_SHAFT_SIZE = new BigDecimal("1740");
     private static final BigDecimal CENTER_DIVIDER = new BigDecimal("2");
     private static final BigDecimal DOUBLE = new BigDecimal("2");
@@ -96,12 +96,12 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionT
 
             int quantity = Integer.parseInt(String.valueOf(dimension.getQuantity()));
 
-            for (int i = 0; i < quantity; i++){
+            for (int i = 0; i < quantity; i++) {
 
-                if(index % 2 == 0){
+                if (index % 2 == 0) {
                     topSizesList.add(mapSizeToDistance(dimension.getSize()));
                     bottomSizesList.add(mapSizeToDistance(subtractKnifeAndThicknessFromSize(dimension.getSize())));
-                }else {
+                } else {
                     bottomSizesList.add(mapSizeToDistance(dimension.getSize()));
                     topSizesList.add(mapSizeToDistance(subtractKnifeAndThicknessFromSize(dimension.getSize())));
                 }
@@ -116,7 +116,7 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionT
     public BigDecimal subtractKnifeAndThicknessFromSize(BigDecimal size) {
 
         return size.subtract(DOUBLE.multiply(measurementRequestDTO.getKnivesSize()))
-                .subtract(measurementRequestDTO.getThickness().multiply(TEN_PERCENT));
+                .subtract(measurementRequestDTO.getThickness().multiply(TEN_PERCENT).multiply(DOUBLE));
 
     }
 }
