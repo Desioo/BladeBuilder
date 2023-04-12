@@ -25,9 +25,10 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionT
     private List<BigDecimal> centerTop;
     @Getter
     private BigDecimal centerBottom;
-
-    private List<List<BigDecimal>> sizesListTop;
-    private List<List<BigDecimal>> sizesListBottom;
+    @Getter
+    private List<List<BigDecimal>> topSizesList;
+    @Getter
+    private List<List<BigDecimal>> bottomSizesList;
 
     @Override
     public void countCenter2() {
@@ -84,12 +85,35 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionT
     }
 
     @Override
-    public void mapDimensionsToTopAndBottomByRepeating(List<Dimension> dimensions) {
+    public void mapDimensionsToTopAndBottomByRepeating() {
 
+        int index = 0;
+
+        for (Dimension dimension : measurementRequestDTO.getDimensionsList()) {
+
+            int quantity = Integer.parseInt(String.valueOf(dimension.getQuantity()));
+
+            for (int i = 0; i < quantity; i++){
+
+                if(index % 2 == 0){
+                    topSizesList.add(mapSizeToDistance(dimension.getSize()));
+                    bottomSizesList.add(mapSizeToDistance(subtractKnifeAndThicknessFromSize(dimension.getSize())));
+                }else {
+                    bottomSizesList.add(mapSizeToDistance(dimension.getSize()));
+                    topSizesList.add(mapSizeToDistance(subtractKnifeAndThicknessFromSize(dimension.getSize())));
+                }
+
+                index++;
+
+            }
+        }
     }
 
     @Override
     public BigDecimal subtractKnifeAndThicknessFromSize(BigDecimal size) {
-        return null;
+
+        return size.subtract(DOUBLE.multiply(measurementRequestDTO.getKnivesSize()))
+                .subtract(measurementRequestDTO.getThickness());
+
     }
 }

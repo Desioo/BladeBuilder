@@ -29,6 +29,7 @@ public class MeasurementWithCalculationsDTO {
 
         countCenters(separator);
         countCenters(knife);
+        knife.mapDimensionsToTopAndBottomByRepeating();
 
     }
 

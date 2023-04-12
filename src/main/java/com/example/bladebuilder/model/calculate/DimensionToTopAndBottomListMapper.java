@@ -1,11 +1,10 @@
 package com.example.bladebuilder.model.calculate;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public interface DimensionToTopAndBottomListMapper {
 
-    void mapDimensionsToTopAndBottomByRepeating(List<Dimension> dimensions);
+    void mapDimensionsToTopAndBottomByRepeating();
 
     BigDecimal subtractKnifeAndThicknessFromSize(BigDecimal size);
 
