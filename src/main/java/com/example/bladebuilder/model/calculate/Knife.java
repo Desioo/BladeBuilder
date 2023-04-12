@@ -17,8 +17,8 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionT
     private static final BigDecimal KNIFE_CORRECTION = new BigDecimal("0.04");
     private static final BigDecimal TEN_PERCENT = new BigDecimal("0.1");
 
-    private BigDecimal distanceThree;
-    private BigDecimal distanceFive;
+    private  BigDecimal distanceThree;
+    private  BigDecimal distanceFive;
 
     private final MeasurementRequestDTO measurementRequestDTO;
     @Getter
@@ -26,15 +26,16 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionT
     @Getter
     private BigDecimal centerBottom;
     @Getter
-    private List<List<BigDecimal>> topSizesList = new ArrayList<>();
+    private final List<List<BigDecimal>> topSizesList = new ArrayList<>();
     @Getter
-    private List<List<BigDecimal>> bottomSizesList = new ArrayList<>();
+    private final List<List<BigDecimal>> bottomSizesList = new ArrayList<>();
 
     @Override
     public void countCenter2() {
 
         centerBottom = FULL_SHAFT_SIZE.subtract(measurementRequestDTO.getFullSize())
-                .divide(CENTER_DIVIDER, 0, RoundingMode.HALF_EVEN);
+                .divide(CENTER_DIVIDER, 0, RoundingMode.HALF_EVEN)
+                .subtract(measurementRequestDTO.getScrapCorrection());
 
     }
 
