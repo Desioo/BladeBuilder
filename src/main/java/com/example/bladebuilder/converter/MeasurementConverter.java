@@ -6,6 +6,7 @@ import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import com.example.bladebuilder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -18,7 +19,9 @@ import java.util.List;
 public class MeasurementConverter implements Converter<MeasurementRequestDTO, Measurement> {
 
     @Autowired
-    private UserService userService;
+    private  UserService userService;
+    @Autowired
+    private  BCryptPasswordEncoder passwordEncoder;
 
 
 
@@ -30,7 +33,7 @@ public class MeasurementConverter implements Converter<MeasurementRequestDTO, Me
         ZonedDateTime warsawDateTime = ZonedDateTime.now(ZoneId.of("Europe/Warsaw"));
 
         measurement.setThickness(String.valueOf(requestDTO.getThickness()));
-        measurement.setUserName(userService.getUserNameByPassword(requestDTO.getUserPassword()));
+        measurement.setUserName(userService.getUserNameByPassword(passwordEncoder.encode(requestDTO.getUserPassword())));
         measurement.setDimensionsWithQuantity(changeDimensionsToText(requestDTO.getDimensionsList()));
         measurement.setDate(warsawDateTime.toLocalDate());
         measurement.setTime(warsawDateTime.toLocalTime());

@@ -7,6 +7,7 @@ import com.example.bladebuilder.service.UserService;
 import com.example.bladebuilder.utils.ConverterUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,7 @@ public class UserController {
 
     private final UserService userService;
     private final UserResponseDTOConverter userResponseDTOConverter;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping("")
     @ResponseBody
@@ -30,6 +32,7 @@ public class UserController {
     @PostMapping("")
     @ResponseBody
     public ResponseEntity<String> add(@RequestBody User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.save(user);
         return ResponseEntity.ok("User add");
     }
