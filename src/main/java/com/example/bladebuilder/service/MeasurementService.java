@@ -39,7 +39,7 @@ public class MeasurementService implements ServiceInterface<Measurement> {
 
     @Override
     public List<Measurement> findAll() {
-      return measurementRepository.findAll();
+      return measurementRepository.findAllMeasurement();
     }
 
     public MeasurementWithCalculationsDTO count(MeasurementRequestDTO measurementRequestDTO){
