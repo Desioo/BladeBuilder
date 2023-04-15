@@ -33,7 +33,7 @@ public class MeasurementConverter implements Converter<MeasurementRequestDTO, Me
         ZonedDateTime warsawDateTime = ZonedDateTime.now(ZoneId.of("Europe/Warsaw"));
 
         measurement.setThickness(String.valueOf(requestDTO.getThickness()));
-        measurement.setUserName(userService.getUserNameByPassword(passwordEncoder.encode(requestDTO.getUserPassword())));
+        measurement.setUserName(userService.getUserNameByPassword(requestDTO.getUserPassword()));
         measurement.setDimensionsWithQuantity(changeDimensionsToText(requestDTO.getDimensionsList()));
         measurement.setDate(warsawDateTime.toLocalDate());
         measurement.setTime(warsawDateTime.toLocalTime());
