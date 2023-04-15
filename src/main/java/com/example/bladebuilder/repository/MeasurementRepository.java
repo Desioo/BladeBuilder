@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface MeasurementRepository extends JpaRepository<Measurement, Long> {
 
-    @Query("SELECT m FROM Measurement m ORDER BY ID DESC")
-    List<Measurement> findAllMeasurement();
+    @Query("SELECT m FROM Measurement m ORDER BY m.id DESC")
+    List<Measurement> findAllMeasurementOrderByIdDESC();
 
 }
