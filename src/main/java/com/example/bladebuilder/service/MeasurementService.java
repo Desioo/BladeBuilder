@@ -10,6 +10,7 @@ import com.example.bladebuilder.repository.MeasurementRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +40,11 @@ public class MeasurementService implements ServiceInterface<Measurement> {
 
     @Override
     public List<Measurement> findAll() {
-      return measurementRepository.findAllMeasurementOrderByIdDESC();
+      return measurementRepository.findAllMeasurementOrderByIdDesc();
+    }
+
+    public List<Measurement> findAllByDate(LocalDate date){
+        return measurementRepository.findAllByDateOrderByIdDesc(date);
     }
 
     public MeasurementWithCalculationsDTO count(MeasurementRequestDTO measurementRequestDTO){

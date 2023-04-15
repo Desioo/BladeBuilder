@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -29,4 +30,9 @@ public class MeasurementController {
         return measurementService.findAll();
     }
 
+    @GetMapping("/all/date/{date}")
+    @ResponseBody
+    public List<Measurement> all(@PathVariable LocalDate date){
+       return measurementService.findAllByDate(date);
+    }
 }
