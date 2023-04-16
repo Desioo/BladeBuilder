@@ -73,7 +73,7 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionT
             size = size.subtract(distanceThree);
         }
 
-        sizeWithDistances.add(size);
+        sizeWithDistances.add(size.setScale(0, RoundingMode.DOWN));
         checkDistanceAndAddToList(sizeWithDistances, distanceThree);
         checkDistanceAndAddToList(sizeWithDistances, distanceFive);
 

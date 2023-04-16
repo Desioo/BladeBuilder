@@ -355,4 +355,105 @@ public class SeparatorCountCenter1Test {
         createAllAndCheckResult(expected, dimensions);
 
     }
+
+    public void testCountCenter1_case25() {
+
+        // given
+        String expected = "273.5";
+
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension("2", "225"));
+        dimensions.add(new Dimension("5", "108"));
+        dimensions.add(new Dimension("2", "103"));
+
+        createAllAndCheckResult(expected, dimensions);
+
+    }
+
+    @Test
+    public void testCountCenter1_case26() {
+
+        // given
+        String expected = "290.2";
+
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension("1", "630.3"));
+        dimensions.add(new Dimension("1", "560.3"));
+
+        createAllAndCheckResult(expected, dimensions);
+
+    }
+
+    @Test
+    public void testCountCenter1_case27() {
+
+        // given
+        String expected = "285.5";
+
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension("2", "410.3"));
+        dimensions.add(new Dimension("1", "375.3"));
+
+        createAllAndCheckResult(expected, dimensions);
+
+    }
+
+    @Test
+    public void testCountCenter1_case28() {
+
+        // given
+        String expected = "282.4";
+
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension("1", "410.3"));
+        dimensions.add(new Dimension("1", "375.3"));
+        dimensions.add(new Dimension("2", "206.3"));
+
+        createAllAndCheckResult(expected, dimensions);
+
+    }
+
+    @Test
+    public void testCountCenter1_case29() {
+
+        // given
+        String expected = "256.1";
+
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension("1", "500.3"));
+        dimensions.add(new Dimension("2", "252.3"));
+        dimensions.add(new Dimension("3", "79.3"));
+
+        createAllAndCheckResult(expected, dimensions);
+
+    }
+
+    @Test
+    public void testCountCenter1_case30() {
+
+        // given
+        String expected = "256.3";
+
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension("1", "500.3"));
+        dimensions.add(new Dimension("2", "250.3"));
+        dimensions.add(new Dimension("1", "176.3"));
+        dimensions.add(new Dimension("1", "69.3"));
+
+        createAllAndCheckResult(expected, dimensions);
+
+    }
+
+    @Test
+    public void testCountCenter1_case31() {
+
+        // given
+        String expected = "420.0";
+
+        List<Dimension> dimensions = new ArrayList<>();
+        dimensions.add(new Dimension("1", "935"));
+
+        createAllAndCheckResult(expected, dimensions);
+
+    }
 }

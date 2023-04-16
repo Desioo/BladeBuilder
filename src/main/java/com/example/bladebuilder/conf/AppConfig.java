@@ -1,9 +1,6 @@
 package com.example.bladebuilder.conf;
 
-import com.example.bladebuilder.converter.MeasurementConverter;
-import com.example.bladebuilder.converter.MeasurementDetailsConverter;
-import com.example.bladebuilder.converter.UserConverter;
-import com.example.bladebuilder.converter.UserResponseDTOConverter;
+import com.example.bladebuilder.converter.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
@@ -11,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class AppConf implements WebMvcConfigurer {
+public class AppConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -26,6 +23,7 @@ public class AppConf implements WebMvcConfigurer {
         registry.addConverter(getUserResponseDTOConverter());
         registry.addConverter(getUserConverter());
         registry.addConverter(getMeasurementConverter());
+        registry.addConverter(getDateConverter());
 
     }
 
@@ -48,4 +46,10 @@ public class AppConf implements WebMvcConfigurer {
     public MeasurementDetailsConverter getMeasurementDetailsConverter() {
         return new MeasurementDetailsConverter();
     }
+
+    @Bean
+    public DateConverter getDateConverter(){
+        return new DateConverter();
+    }
+
 }
