@@ -69,7 +69,7 @@ public class UserController {
         }
 
         User userWithNewPassword = user.get();
-        userWithNewPassword.setPassword(password);
+        userWithNewPassword.setPassword(passwordEncoder.encode(password));
 
         userService.save(userWithNewPassword);
 

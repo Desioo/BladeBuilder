@@ -39,7 +39,6 @@ public class UserService implements ServiceInterface<User> {
     public String getUserNameByPassword(String password){
 
         //TODO Hasło
-        System.out.println("password: " + password);
 
         List<User> all = findAll();
 
@@ -52,5 +51,4 @@ public class UserService implements ServiceInterface<User> {
         return "";
 
     }
-
 }
