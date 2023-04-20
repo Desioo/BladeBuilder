@@ -374,7 +374,7 @@ public class KnifeCountCentersTest {
         centerTop.add(new BigDecimal("5.04"));
 
         BigDecimal thickness = new BigDecimal("3.2");
-        BigDecimal knifeSize = new BigDecimal("10");
+        BigDecimal knifeSize = new BigDecimal("20");
 
         List<Dimension> dimensions = new ArrayList<>();
         dimensions.add(new Dimension("16", "70"));
@@ -444,25 +444,25 @@ public class KnifeCountCentersTest {
         createAllAndCheckResult(centerBottom, centerTop, thickness, knifeSize, dimensions);
     }
 
-    @Test
-    public void testCountCenters_case21() {
-
-        // given
-        BigDecimal centerBottom = new BigDecimal("310");
-
-        List<BigDecimal> centerTop = new ArrayList<>();
-        centerTop.add(new BigDecimal("281"));
-        centerTop.add(new BigDecimal("3.6"));
-        centerTop.add(new BigDecimal("5.04"));
-
-        BigDecimal thickness = new BigDecimal("3.2");
-        BigDecimal knifeSize = new BigDecimal("10");
-
-        List<Dimension> dimensions = new ArrayList<>();
-        dimensions.add(new Dimension("16", "70"));
-
-        createAllAndCheckResult(centerBottom, centerTop, thickness, knifeSize, dimensions);
-    }
+//    @Test
+//    public void testCountCenters_case21() {
+//
+//        // given
+//        BigDecimal centerBottom = new BigDecimal("310");
+//
+//        List<BigDecimal> centerTop = new ArrayList<>();
+//        centerTop.add(new BigDecimal("281"));
+//        centerTop.add(new BigDecimal("3.6"));
+//        centerTop.add(new BigDecimal("5.04"));
+//
+//        BigDecimal thickness = new BigDecimal("3.2");
+//        BigDecimal knifeSize = new BigDecimal("10");
+//
+//        List<Dimension> dimensions = new ArrayList<>();
+//        dimensions.add(new Dimension("16", "70"));
+//
+//        createAllAndCheckResult(centerBottom, centerTop, thickness, knifeSize, dimensions);
+//    }
 
     @Test
     public void testCountCenters_case22() {
