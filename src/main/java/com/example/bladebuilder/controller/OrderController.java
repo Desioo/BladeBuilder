@@ -1,33 +1,39 @@
 package com.example.bladebuilder.controller;
 
+import com.example.bladebuilder.converter.OrderListConverter;
+import com.example.bladebuilder.model.entity.Order;
+import com.example.bladebuilder.service.OrderService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.util.List;
 
 @Controller
 @RequestMapping("/order")
-public class OrderController{
+@RequiredArgsConstructor
+public class OrderController {
 
+    private final OrderListConverter orderListConverter;
+    private final OrderService orderService;
 
     @PostMapping()
     @ResponseBody
-    public String add(@RequestBody String text){
+    public String add(@RequestBody String ordersToConvert) {
 
-        String[] split = text.split("\\\\n");
+        List<Order> orders = orderListConverter.convert(ordersToConvert);
 
-        for (String s : split) {
-            String[] order = s.split("\\\\t");
-            System.out.println(Arrays.toString(order));
-            System.out.println("###########");
+        for (Order order : orders) {
+           orderService.save(order);
         }
 
         return "ok";
     }
 
-
+    @GetMapping()
+    @ResponseBody
+    public List<Order> all() {
+        return orderService.findAll();
+    }
 
 }

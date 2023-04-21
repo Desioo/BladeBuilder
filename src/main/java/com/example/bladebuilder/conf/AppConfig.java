@@ -24,6 +24,8 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addConverter(getUserConverter());
         registry.addConverter(getMeasurementConverter());
         registry.addConverter(getDateConverter());
+        registry.addConverter(getOrderConverter());
+        registry.addConverter(getOrderListConverter());
 
     }
 
@@ -50,6 +52,16 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public DateConverter getDateConverter(){
         return new DateConverter();
+    }
+
+    @Bean
+    public OrderConverter getOrderConverter(){
+        return new OrderConverter();
+    }
+
+    @Bean
+    public OrderListConverter getOrderListConverter(){
+        return new OrderListConverter();
     }
 
 }
