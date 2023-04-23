@@ -1,7 +1,7 @@
 package com.example.bladebuilder.service;
 
 import com.example.bladebuilder.model.entity.User;
-import com.example.bladebuilder.service.repository.UserRepository;
+import com.example.bladebuilder.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,8 +22,9 @@ public class UserService implements ServiceInterface<User> {
     }
 
     @Override
-    public void remove(User user) {
-       userRepository.delete(user);
+    public void remove(User user){
+        user.setActive(false);
+        save(user);
     }
 
     @Override
@@ -36,11 +37,15 @@ public class UserService implements ServiceInterface<User> {
         return userRepository.findAll();
     }
 
-    public User getUserPassword(String password){
+    public List<User> findAllActiveUsers() {
+        return userRepository.findAllActiveUsers();
+    }
+
+    public User findUserPassword(String password){
 
         //TODO Hasło i optional
 
-        List<User> all = findAll();
+        List<User> all = findAllActiveUsers();
 
         for (User user : all) {
             if(passwordEncoder.matches(password, user.getPassword())){

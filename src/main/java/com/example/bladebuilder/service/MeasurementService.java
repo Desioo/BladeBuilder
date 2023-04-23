@@ -6,7 +6,7 @@ import com.example.bladebuilder.model.entity.Measurement;
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import com.example.bladebuilder.model.response.MeasurementDetails;
 import com.example.bladebuilder.model.response.MeasurementWithCalculationsDTO;
-import com.example.bladebuilder.service.repository.MeasurementRepository;
+import com.example.bladebuilder.repository.MeasurementRepository;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.Hibernate;
 import org.springframework.stereotype.Controller;
