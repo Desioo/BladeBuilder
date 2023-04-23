@@ -1,7 +1,7 @@
 package com.example.bladebuilder.service;
 
 import com.example.bladebuilder.model.entity.Order;
-import com.example.bladebuilder.repository.OrderRepository;
+import com.example.bladebuilder.service.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

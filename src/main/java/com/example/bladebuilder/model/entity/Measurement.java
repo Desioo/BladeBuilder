@@ -1,10 +1,7 @@
 package com.example.bladebuilder.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -23,6 +20,8 @@ public class Measurement {
     private LocalTime time;
     private String thickness;
     private String dimensionsWithQuantity;
-    private String userName;
+    @ManyToOne
+    //TODO Zwracanie hasła
+    private User user;
 
 }

@@ -1,7 +1,7 @@
 package com.example.bladebuilder.service;
 
 import com.example.bladebuilder.model.entity.User;
-import com.example.bladebuilder.repository.UserRepository;
+import com.example.bladebuilder.service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -36,19 +36,19 @@ public class UserService implements ServiceInterface<User> {
         return userRepository.findAll();
     }
 
-    public String getUserNameByPassword(String password){
+    public User getUserPassword(String password){
 
-        //TODO Hasło
+        //TODO Hasło i optional
 
         List<User> all = findAll();
 
         for (User user : all) {
             if(passwordEncoder.matches(password, user.getPassword())){
-                return user.getName();
+                return user;
             }
         }
 
-        return "";
+        return null;
 
     }
 }
