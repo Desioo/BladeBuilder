@@ -3,11 +3,13 @@ package com.example.bladebuilder.model.entity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
 @Table(name = "orders")
-@Builder
+// TODO @Builder
+@RequiredArgsConstructor
 public class Order {
 
     @Id
@@ -16,6 +18,7 @@ public class Order {
     private int idSeq;
     private int seq;
     private String customer;
+    @Column(length = 500)
     private String description;
     private String invoiceNumber;
     private String thickness;
