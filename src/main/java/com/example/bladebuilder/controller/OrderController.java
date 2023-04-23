@@ -25,6 +25,8 @@ public class OrderController {
 
         List<Order> orders = orderListConverter.convert(ordersToConvert);
 
+        orderService.removeAllOrders();
+
         for (Order order : orders) {
            orderService.save(order);
         }

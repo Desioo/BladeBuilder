@@ -43,7 +43,7 @@ public class UserService implements ServiceInterface<User> {
 
     public User findUserPassword(String password){
 
-        //TODO Hasło i optional
+        //TODO hasło i optional
 
         List<User> all = findAllActiveUsers();
 
