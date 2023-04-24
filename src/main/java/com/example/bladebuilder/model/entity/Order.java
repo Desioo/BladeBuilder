@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Data
 @Table(name = "orders")
-// TODO @Builder
 @RequiredArgsConstructor
 public class Order {
 
@@ -18,7 +17,7 @@ public class Order {
     private int idSeq;
     private int seq;
     private String customer;
-    @Column(length = 500)
+    @Column(length = 1000)
     private String description;
     private String invoiceNumber;
     private String thickness;

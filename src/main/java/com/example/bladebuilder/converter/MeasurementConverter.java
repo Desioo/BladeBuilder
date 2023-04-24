@@ -24,7 +24,7 @@ public class MeasurementConverter implements Converter<MeasurementRequestDTO, Me
         //TODO strefa czasowa
         ZonedDateTime warsawDateTime = ZonedDateTime.now(ZoneId.of("Europe/Warsaw"));
 
-        measurement.setThickness(String.valueOf(requestDTO.getThickness()));
+        measurement.setThickness(requestDTO.getThickness());
         measurement.setUser(userService.findUserPassword(requestDTO.getUserPassword()));
         measurement.setDimensionsWithQuantity(changeDimensionsToText(requestDTO.getDimensionsList()));
         measurement.setDate(warsawDateTime.toLocalDate());

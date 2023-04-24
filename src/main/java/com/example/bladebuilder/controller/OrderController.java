@@ -28,7 +28,7 @@ public class OrderController {
         orderService.removeAllOrders();
 
         for (Order order : orders) {
-           orderService.save(order);
+            orderService.save(order);
         }
 
         return "ok";
