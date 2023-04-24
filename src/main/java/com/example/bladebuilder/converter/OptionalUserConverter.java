@@ -7,7 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 
 import java.util.Optional;
 
-public class UserConverter implements Converter<String, Optional<User>>{
+public class OptionalUserConverter implements Converter<String, Optional<User>>{
 
     @Autowired
     private UserService userService;

@@ -8,6 +8,7 @@ import com.example.bladebuilder.model.response.MeasurementDetails;
 import com.example.bladebuilder.model.response.MeasurementWithCalculationsDTO;
 import com.example.bladebuilder.repository.MeasurementRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Controller;
 
 import java.time.LocalDate;
@@ -35,16 +36,29 @@ public class MeasurementService implements ServiceInterface<Measurement> {
 
     @Override
     public Optional<Measurement> findById(Long id) {
-        return measurementRepository.findById(id);
+
+        Optional<Measurement> measurement = measurementRepository.findById(id);
+
+        measurement.ifPresent(this::getUserToMeasurement);
+
+        return measurement;
     }
 
     @Override
     public List<Measurement> findAll() {
-      return measurementRepository.findAllMeasurementOrderByIdDesc();
+
+        List<Measurement> measurements = measurementRepository.findAllMeasurementOrderByIdDesc();
+        getUsersToMeasurementList(measurements);
+
+        return measurements;
     }
 
     public List<Measurement> findAllByDate(LocalDate date){
-        return measurementRepository.findAllByDateOrderByIdDesc(date);
+
+        List<Measurement> measurements = measurementRepository.findAllByDateOrderByIdDesc(date);
+        getUsersToMeasurementList(measurements);
+
+        return measurements;
     }
 
     public MeasurementWithCalculationsDTO count(MeasurementRequestDTO measurementRequestDTO){
@@ -57,7 +71,7 @@ public class MeasurementService implements ServiceInterface<Measurement> {
 
         //TODO walidacja
 
-        if(measurement.getUserName().equals("")){
+        if(measurement.getUser().getName().equals("")){
             throw new  NullPointerException("userName");
         }
 
@@ -66,4 +80,13 @@ public class MeasurementService implements ServiceInterface<Measurement> {
 
         return  new MeasurementWithCalculationsDTO(measurementRequestDTO, measurement, measurementDetails);
     }
+
+    private void getUsersToMeasurementList(List<Measurement> measurements){
+        measurements.forEach(m -> Hibernate.initialize(m.getUser()));
+    }
+
+    private void getUserToMeasurement(Measurement measurement){
+       Hibernate.initialize(measurement.getUser());
+    }
+
 }

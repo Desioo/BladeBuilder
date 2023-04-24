@@ -22,8 +22,9 @@ public class UserService implements ServiceInterface<User> {
     }
 
     @Override
-    public void remove(User user) {
-       userRepository.delete(user);
+    public void remove(User user){
+        user.setActive(false);
+        save(user);
     }
 
     @Override
@@ -36,19 +37,23 @@ public class UserService implements ServiceInterface<User> {
         return userRepository.findAll();
     }
 
-    public String getUserNameByPassword(String password){
+    public List<User> findAllActiveUsers() {
+        return userRepository.findAllActiveUsers();
+    }
 
-        //TODO Hasło
+    public User findUserPassword(String password){
 
-        List<User> all = findAll();
+        //TODO hasło i optional
+
+        List<User> all = findAllActiveUsers();
 
         for (User user : all) {
             if(passwordEncoder.matches(password, user.getPassword())){
-                return user.getName();
+                return user;
             }
         }
 
-        return "";
+        return null;
 
     }
 }

@@ -26,14 +26,18 @@ public class UserController {
     @GetMapping("")
     @ResponseBody
     public List<UserResponseDTO> all() {
-        return ConverterUtils.convertList(userService.findAll(), userResponseDTOConverter);
+        return ConverterUtils.convertList(userService.findAllActiveUsers(), userResponseDTOConverter);
     }
 
     @PostMapping("")
     @ResponseBody
     public ResponseEntity<String> add(@RequestBody User user) {
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setActive(true);
+
         userService.save(user);
+
         return ResponseEntity.ok("User add");
     }
 
