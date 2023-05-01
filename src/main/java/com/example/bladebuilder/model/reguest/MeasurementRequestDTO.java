@@ -1,9 +1,12 @@
 package com.example.bladebuilder.model.reguest;
 
 import com.example.bladebuilder.model.calculate.Dimension;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import com.example.bladebuilder.model.entity.Measurement;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -11,15 +14,28 @@ import java.util.List;
 import java.util.Objects;
 
 @Data
+@Validated
 public class MeasurementRequestDTO {
 
-    @NotEmpty
+    @NotEmpty()
+    @Valid
     private List<Dimension> dimensionsList;
 
     @NotNull
+    @DecimalMin("10")
+    @DecimalMax("20")
     private BigDecimal knivesSize;
+
+    @NotNull
+    @DecimalMin("0.1")
+    @DecimalMax("4.0")
     private BigDecimal thickness;
+
+    @NotBlank
+    @Length(min = 4)
     private String userPassword;
+
+    @DecimalMax("1650")
     private BigDecimal actualWidth;
 
     private BigDecimal fullQuantity;
