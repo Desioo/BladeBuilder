@@ -1,6 +1,8 @@
 package com.example.bladebuilder.model.reguest;
 
 import com.example.bladebuilder.model.calculate.Dimension;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -11,7 +13,10 @@ import java.util.Objects;
 @Data
 public class MeasurementRequestDTO {
 
+    @NotEmpty
     private List<Dimension> dimensionsList;
+
+    @NotNull
     private BigDecimal knivesSize;
     private BigDecimal thickness;
     private String userPassword;

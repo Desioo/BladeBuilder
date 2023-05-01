@@ -1,7 +1,7 @@
 package com.example.bladebuilder.model.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -14,11 +14,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NotEmpty
+    @NotBlank
     @Length(min = 4)
     private String name;
 
-    @NotEmpty
+    @NotBlank
     @Length(min = 4)
     private String password;
 
