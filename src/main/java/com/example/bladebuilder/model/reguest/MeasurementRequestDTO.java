@@ -1,11 +1,12 @@
 package com.example.bladebuilder.model.reguest;
 
 import com.example.bladebuilder.model.calculate.Dimension;
-import com.example.bladebuilder.model.entity.Measurement;
 import jakarta.validation.Valid;
+import jakarta.validation.Validator;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
@@ -17,7 +18,13 @@ import java.util.Objects;
 @Validated
 public class MeasurementRequestDTO {
 
-    @NotEmpty()
+    @Autowired
+    private Validator validator;
+
+    public interface Update {
+    }
+
+    @NotEmpty
     @Valid
     private List<Dimension> dimensionsList;
 
@@ -38,15 +45,22 @@ public class MeasurementRequestDTO {
     @DecimalMax("1650")
     private BigDecimal actualWidth;
 
+    @NotNull(groups = Update.class)
+    @DecimalMin(value = "1", groups = Update.class)
+    @DecimalMax(value = "30", groups = Update.class)
     private BigDecimal fullQuantity;
+
+    @NotNull(groups = Update.class)
+    @DecimalMax(value = "1000", groups = Update.class)
     private BigDecimal fullSize;
+
     private BigDecimal scrap = BigDecimal.ZERO;
     private BigDecimal scrapCorrection = BigDecimal.ZERO;
     private static final BigDecimal SMALL_SCRAP = new BigDecimal("6");
     private static final BigDecimal SCRAP_DIVIDER = new BigDecimal("2");
 
 
-    private void countFullQuantity(){
+    private void countFullQuantity() {
 
         fullQuantity = dimensionsList.stream()
                 .map(Dimension::getQuantity)
@@ -54,7 +68,7 @@ public class MeasurementRequestDTO {
 
     }
 
-    private void countFullSize(){
+    private void countFullSize() {
 
         fullSize = dimensionsList.stream()
                 .map((d) -> d.getQuantity().multiply(d.getSize()))
@@ -62,9 +76,9 @@ public class MeasurementRequestDTO {
 
     }
 
-    private void countScrap(){
+    private void countScrap() {
 
-        if(Objects.nonNull(actualWidth)){
+        if (Objects.nonNull(actualWidth)) {
             scrap = actualWidth.subtract(fullSize).subtract(SMALL_SCRAP);
             scrapCorrection = scrap.subtract(SMALL_SCRAP).divide(SCRAP_DIVIDER, 0, RoundingMode.DOWN);
         }
@@ -75,6 +89,6 @@ public class MeasurementRequestDTO {
         countFullSize();
         countFullQuantity();
         countScrap();
+        validator.validate(MeasurementRequestDTO.Update.class);
     }
-
 }

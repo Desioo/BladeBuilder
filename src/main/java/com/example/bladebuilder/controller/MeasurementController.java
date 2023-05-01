@@ -23,7 +23,7 @@ public class MeasurementController {
 
     @PostMapping("")
     @ResponseBody
-    public MeasurementWithCalculationsDTO count(@RequestBody @Validated(Measurement.BasicInfo.class)  MeasurementRequestDTO measurementRequestDTO){
+    public MeasurementWithCalculationsDTO count(@RequestBody @Valid MeasurementRequestDTO measurementRequestDTO){
        return measurementService.count(measurementRequestDTO);
     }
 
