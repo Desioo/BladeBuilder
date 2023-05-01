@@ -5,11 +5,14 @@ import com.example.bladebuilder.model.entity.User;
 import com.example.bladebuilder.model.response.UserResponseDTO;
 import com.example.bladebuilder.service.UserService;
 import com.example.bladebuilder.utils.ConverterUtils;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -17,6 +20,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
+@Validated
 public class UserController {
 
     private final UserService userService;
@@ -31,7 +35,7 @@ public class UserController {
 
     @PostMapping("")
     @ResponseBody
-    public ResponseEntity<String> add(@RequestBody User user) {
+    public ResponseEntity<String> add(@RequestBody @Valid User user) {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setActive(true);

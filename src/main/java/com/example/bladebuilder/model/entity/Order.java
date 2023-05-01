@@ -1,7 +1,6 @@
 package com.example.bladebuilder.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
