@@ -1,7 +1,7 @@
 package com.example.bladebuilder.service;
 
-import com.example.bladebuilder.converter.MeasurementConverter;
-import com.example.bladebuilder.converter.MeasurementDetailsConverter;
+import com.example.bladebuilder.converter.calculation.MeasurementConverter;
+import com.example.bladebuilder.converter.response.MeasurementDetailsConverter;
 import com.example.bladebuilder.exception.IncorrectUpdateDataValidateException;
 import com.example.bladebuilder.model.entity.Measurement;
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;

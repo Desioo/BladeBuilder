@@ -1,6 +1,6 @@
 package com.example.bladebuilder.controller;
 
-import com.example.bladebuilder.converter.OrderListConverter;
+import com.example.bladebuilder.converter.request.OrderListConverter;
 import com.example.bladebuilder.model.entity.Order;
 import com.example.bladebuilder.service.OrderService;
 import lombok.RequiredArgsConstructor;

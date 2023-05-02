@@ -1,4 +1,4 @@
-package com.example.bladebuilder.converter;
+package com.example.bladebuilder.converter.response;
 
 import com.example.bladebuilder.model.entity.User;
 import com.example.bladebuilder.model.response.UserResponseDTO;

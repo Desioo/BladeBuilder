@@ -1,4 +1,4 @@
-package com.example.bladebuilder.converter;
+package com.example.bladebuilder.converter.request;
 
 import com.example.bladebuilder.model.entity.Order;
 import com.example.bladebuilder.service.OrderService;

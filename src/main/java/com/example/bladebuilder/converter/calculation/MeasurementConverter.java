@@ -1,4 +1,4 @@
-package com.example.bladebuilder.converter;
+package com.example.bladebuilder.converter.calculation;
 
 import com.example.bladebuilder.model.calculate.Dimension;
 import com.example.bladebuilder.model.entity.Measurement;

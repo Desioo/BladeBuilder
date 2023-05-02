@@ -1,5 +1,6 @@
-package com.example.bladebuilder.converter;
+package com.example.bladebuilder.converter.request;
 
+import com.example.bladebuilder.converter.request.OrderConverter;
 import com.example.bladebuilder.model.entity.Order;
 import com.example.bladebuilder.utils.ConverterUtils;
 import org.springframework.beans.factory.annotation.Autowired;

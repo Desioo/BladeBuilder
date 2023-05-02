@@ -1,6 +1,6 @@
 package com.example.bladebuilder.controller;
 
-import com.example.bladebuilder.converter.UserResponseDTOConverter;
+import com.example.bladebuilder.converter.response.UserResponseDTOConverter;
 import com.example.bladebuilder.exception.UserDataTakenException;
 import com.example.bladebuilder.model.entity.User;
 import com.example.bladebuilder.model.response.UserResponseDTO;

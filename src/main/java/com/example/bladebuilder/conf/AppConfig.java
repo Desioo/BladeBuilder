@@ -1,6 +1,12 @@
 package com.example.bladebuilder.conf;
 
-import com.example.bladebuilder.converter.*;
+import com.example.bladebuilder.converter.calculation.MeasurementConverter;
+import com.example.bladebuilder.converter.request.OptionalOrderByIdConverter;
+import com.example.bladebuilder.converter.request.OptionalUserConverter;
+import com.example.bladebuilder.converter.request.OrderConverter;
+import com.example.bladebuilder.converter.request.OrderListConverter;
+import com.example.bladebuilder.converter.response.MeasurementDetailsConverter;
+import com.example.bladebuilder.converter.response.UserResponseDTOConverter;
 import com.example.bladebuilder.exception.GlobalExceptionHandler;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -46,7 +52,6 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addConverter(getUserResponseDTOConverter());
         registry.addConverter(getUserConverter());
         registry.addConverter(getMeasurementConverter());
-        registry.addConverter(getDateConverter());
         registry.addConverter(getOrderConverter());
         registry.addConverter(getOrderListConverter());
         registry.addConverter(getOptionalOrderByIdConverter());
@@ -71,11 +76,6 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public MeasurementDetailsConverter getMeasurementDetailsConverter() {
         return new MeasurementDetailsConverter();
-    }
-
-    @Bean
-    public DateConverter getDateConverter() {
-        return new DateConverter();
     }
 
     @Bean
