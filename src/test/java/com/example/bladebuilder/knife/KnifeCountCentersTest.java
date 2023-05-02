@@ -1,6 +1,6 @@
 package com.example.bladebuilder.knife;
 
-import com.example.bladebuilder.exception.IncorrectDataValidateException;
+import com.example.bladebuilder.exception.IncorrectUpdateDataValidateException;
 import com.example.bladebuilder.model.calculate.Dimension;
 import com.example.bladebuilder.model.calculate.Knife;
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
@@ -16,7 +16,7 @@ public class KnifeCountCentersTest{
 
     private void createAllAndCheckResult(BigDecimal centerBottom,
                                          List<BigDecimal> centerTop, BigDecimal thickness,
-                                         BigDecimal knifeSize, List<Dimension> dimensions) throws IncorrectDataValidateException {
+                                         BigDecimal knifeSize, List<Dimension> dimensions) throws IncorrectUpdateDataValidateException {
 
         // given
         MeasurementRequestDTO measurementRequestDTO = new MeasurementRequestDTO();
@@ -42,7 +42,7 @@ public class KnifeCountCentersTest{
 
 
     @Test
-    public void testCountCenters_case1() throws IncorrectDataValidateException{
+    public void testCountCenters_case1() throws IncorrectUpdateDataValidateException {
 
         // given
         BigDecimal centerBottom = new BigDecimal("279");
@@ -65,7 +65,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case2() throws IncorrectDataValidateException{
+    public void testCountCenters_case2() throws IncorrectUpdateDataValidateException {
 
         // given
         BigDecimal centerBottom = new BigDecimal("130");
@@ -84,7 +84,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case3() throws IncorrectDataValidateException{
+    public void testCountCenters_case3() throws IncorrectUpdateDataValidateException {
 
         // given
         BigDecimal centerBottom = new BigDecimal("280");
@@ -104,7 +104,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case4() throws IncorrectDataValidateException{
+    public void testCountCenters_case4() throws IncorrectUpdateDataValidateException {
 
         // given
         BigDecimal centerBottom = new BigDecimal("210");
@@ -124,7 +124,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case5() throws IncorrectDataValidateException{
+    public void testCountCenters_case5() throws IncorrectUpdateDataValidateException {
 
         // given
         BigDecimal centerBottom = new BigDecimal("235");
@@ -144,7 +144,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case6() throws IncorrectDataValidateException{
+    public void testCountCenters_case6() throws IncorrectUpdateDataValidateException {
         // given
         BigDecimal centerBottom = new BigDecimal("215");
 
@@ -163,7 +163,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case7() throws IncorrectDataValidateException{
+    public void testCountCenters_case7() throws IncorrectUpdateDataValidateException {
         // given
         BigDecimal centerBottom = new BigDecimal("271");
 
@@ -185,7 +185,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case8() throws IncorrectDataValidateException{
+    public void testCountCenters_case8() throws IncorrectUpdateDataValidateException {
         // given
         BigDecimal centerBottom = new BigDecimal("364");
 
@@ -204,7 +204,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case9() throws IncorrectDataValidateException{
+    public void testCountCenters_case9() throws IncorrectUpdateDataValidateException {
         // given
         BigDecimal centerBottom = new BigDecimal("400");
 
@@ -223,7 +223,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case10() throws IncorrectDataValidateException{
+    public void testCountCenters_case10() throws IncorrectUpdateDataValidateException {
         // given
         BigDecimal centerBottom = new BigDecimal("255");
 
@@ -242,7 +242,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case11() throws IncorrectDataValidateException{
+    public void testCountCenters_case11() throws IncorrectUpdateDataValidateException {
         // given
         BigDecimal centerBottom = new BigDecimal("284");
 
@@ -262,7 +262,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case12() throws IncorrectDataValidateException{
+    public void testCountCenters_case12() throws IncorrectUpdateDataValidateException {
         // given
         BigDecimal centerBottom = new BigDecimal("273");
 
@@ -282,7 +282,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case13() throws IncorrectDataValidateException{
+    public void testCountCenters_case13() throws IncorrectUpdateDataValidateException {
         // given
         BigDecimal centerBottom = new BigDecimal("271");
 
@@ -301,7 +301,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case14() throws IncorrectDataValidateException{
+    public void testCountCenters_case14() throws IncorrectUpdateDataValidateException {
         // given
         BigDecimal centerBottom = new BigDecimal("272");
 
@@ -322,7 +322,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case15() throws IncorrectDataValidateException{
+    public void testCountCenters_case15() throws IncorrectUpdateDataValidateException {
         // given
         BigDecimal centerBottom = new BigDecimal("130");
 
@@ -343,7 +343,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case16() throws IncorrectDataValidateException{
+    public void testCountCenters_case16() throws IncorrectUpdateDataValidateException {
         // given
         BigDecimal centerBottom = new BigDecimal("120");
 
@@ -365,7 +365,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case17() throws IncorrectDataValidateException{
+    public void testCountCenters_case17() throws IncorrectUpdateDataValidateException {
         // given
         BigDecimal centerBottom = new BigDecimal("310");
 
@@ -384,7 +384,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case18() throws IncorrectDataValidateException{
+    public void testCountCenters_case18() throws IncorrectUpdateDataValidateException {
         // given
         BigDecimal centerBottom = new BigDecimal("273");
 
@@ -402,7 +402,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case19() throws IncorrectDataValidateException{
+    public void testCountCenters_case19() throws IncorrectUpdateDataValidateException {
 
         // given
         BigDecimal centerBottom = new BigDecimal("240");
@@ -423,7 +423,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case20() throws IncorrectDataValidateException{
+    public void testCountCenters_case20() throws IncorrectUpdateDataValidateException {
 
         // given
         BigDecimal centerBottom = new BigDecimal("120");
@@ -466,7 +466,7 @@ public class KnifeCountCentersTest{
 //    }
 
     @Test
-    public void testCountCenters_case22() throws IncorrectDataValidateException{
+    public void testCountCenters_case22() throws IncorrectUpdateDataValidateException {
 
         // given
         BigDecimal centerBottom = new BigDecimal("273");
@@ -485,7 +485,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case23() throws IncorrectDataValidateException{
+    public void testCountCenters_case23() throws IncorrectUpdateDataValidateException {
 
         // given
         BigDecimal centerBottom = new BigDecimal("240");
@@ -506,7 +506,7 @@ public class KnifeCountCentersTest{
     }
 
     @Test
-    public void testCountCenters_case24() throws IncorrectDataValidateException{
+    public void testCountCenters_case24() throws IncorrectUpdateDataValidateException {
 
         // given
         BigDecimal centerBottom = new BigDecimal("252");

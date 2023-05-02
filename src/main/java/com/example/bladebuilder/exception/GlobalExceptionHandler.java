@@ -27,8 +27,8 @@ public class GlobalExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(IncorrectDataValidateException.class)
-    public Map<String, String> handleInvalidValidArgument(IncorrectDataValidateException ex) {
+    @ExceptionHandler(IncorrectUpdateDataValidateException.class)
+    public Map<String, String> handleInvalidValidArgument(IncorrectUpdateDataValidateException ex) {
 
         Map<String, String> errors = new HashMap<>();
 

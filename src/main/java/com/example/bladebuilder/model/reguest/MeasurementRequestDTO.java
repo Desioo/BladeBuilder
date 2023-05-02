@@ -1,21 +1,21 @@
 package com.example.bladebuilder.model.reguest;
 
-import com.example.bladebuilder.exception.IncorrectDataValidateException;
+import com.example.bladebuilder.exception.IncorrectUpdateDataValidateException;
 import com.example.bladebuilder.model.calculate.Dimension;
 import jakarta.validation.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 @Data
-public class MeasurementRequestDTO implements Update{
+public class MeasurementRequestDTO implements UpdateData {
 
     ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
     Validator validator = factory.getValidator();
@@ -41,13 +41,14 @@ public class MeasurementRequestDTO implements Update{
     @DecimalMax("1650")
     private BigDecimal actualWidth;
 
-    @NotNull(groups = Update.class)
-    @DecimalMin(value = "1", groups = Update.class)
-    @DecimalMax(value = "30", groups = Update.class)
+    @NotNull(groups = UpdateData.class)
+    @DecimalMin(value = "1", groups = UpdateData.class)
+    @DecimalMax(value = "30", groups = UpdateData.class)
     private BigDecimal fullQuantity;
 
-    @NotNull(groups = Update.class)
-    @DecimalMax(value = "1000", groups = Update.class)
+    @NotNull(groups = UpdateData.class)
+    @DecimalMin(value = "30", groups = UpdateData.class)
+    @DecimalMax(value = "1650", groups = UpdateData.class)
     private BigDecimal fullSize;
 
     private BigDecimal scrap = BigDecimal.ZERO;
@@ -81,22 +82,23 @@ public class MeasurementRequestDTO implements Update{
 
     }
 
-    public void countSizeQuantityAndScrap() throws IncorrectDataValidateException {
+    public void countSizeQuantityAndScrap() throws IncorrectUpdateDataValidateException {
+
         countFullSize();
         countFullQuantity();
         countScrap();
+
         validate();
+
     }
 
     @Override
-    @Validated(Update.class)
-    public void validate() throws IncorrectDataValidateException {
+    public void validate() throws IncorrectUpdateDataValidateException {
 
-        Set<ConstraintViolation<MeasurementRequestDTO>> violations = validator.validate(this, Update.class);
+        Set<ConstraintViolation<UpdateData>> violations = validator.validate(this, UpdateData.class);
 
-        if(!violations.isEmpty()){
-            throw new IncorrectDataValidateException(violations);
+        if (!violations.isEmpty()) {
+            throw new IncorrectUpdateDataValidateException(violations);
         }
     }
-
 }
