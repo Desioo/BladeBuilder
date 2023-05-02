@@ -2,6 +2,7 @@ package com.example.bladebuilder.service;
 
 import com.example.bladebuilder.converter.MeasurementConverter;
 import com.example.bladebuilder.converter.MeasurementDetailsConverter;
+import com.example.bladebuilder.exception.IncorrectDataValidateException;
 import com.example.bladebuilder.model.entity.Measurement;
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import com.example.bladebuilder.model.response.MeasurementDetails;
@@ -61,7 +62,7 @@ public class MeasurementService implements ServiceInterface<Measurement> {
         return measurements;
     }
 
-    public MeasurementWithCalculationsDTO count(MeasurementRequestDTO measurementRequestDTO){
+    public MeasurementWithCalculationsDTO count(MeasurementRequestDTO measurementRequestDTO) throws IncorrectDataValidateException {
 
         //TODO
 

@@ -1,6 +1,7 @@
 package com.example.bladebuilder.controller;
 
 import com.example.bladebuilder.converter.UserResponseDTOConverter;
+import com.example.bladebuilder.exception.UserDataTakenException;
 import com.example.bladebuilder.model.entity.User;
 import com.example.bladebuilder.model.response.UserResponseDTO;
 import com.example.bladebuilder.service.UserService;
@@ -35,8 +36,9 @@ public class UserController {
 
     @PostMapping("")
     @ResponseBody
-    public ResponseEntity<String> add(@RequestBody @Valid User user) {
+    public ResponseEntity<String> add(@RequestBody @Valid User user) throws UserDataTakenException {
 
+        userService.checkPasswordIsFree(user.getPassword());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setActive(true);
 
@@ -70,11 +72,13 @@ public class UserController {
     }
 
     @PutMapping("/password/{user}")
-    public ResponseEntity<String> changeUserPassword(@PathVariable Optional<User> user, @RequestBody String password) {
+    public ResponseEntity<String> changeUserPassword(@PathVariable Optional<User> user, @RequestBody String password) throws UserDataTakenException {
 
         if (user.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
+
+        userService.checkPasswordIsFree(password);
 
         User userWithNewPassword = user.get();
         userWithNewPassword.setPassword(passwordEncoder.encode(password));

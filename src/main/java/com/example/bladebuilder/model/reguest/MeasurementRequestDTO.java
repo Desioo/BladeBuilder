@@ -1,28 +1,24 @@
 package com.example.bladebuilder.model.reguest;
 
+import com.example.bladebuilder.exception.IncorrectDataValidateException;
 import com.example.bladebuilder.model.calculate.Dimension;
-import jakarta.validation.Valid;
-import jakarta.validation.Validator;
+import jakarta.validation.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Data
-@Validated
-public class MeasurementRequestDTO {
+public class MeasurementRequestDTO implements Update{
 
-    @Autowired
-    private Validator validator;
-
-    public interface Update {
-    }
+    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+    Validator validator = factory.getValidator();
 
     @NotEmpty
     @Valid
@@ -85,10 +81,22 @@ public class MeasurementRequestDTO {
 
     }
 
-    public void countSizeQuantityAndScrap(){
+    public void countSizeQuantityAndScrap() throws IncorrectDataValidateException {
         countFullSize();
         countFullQuantity();
         countScrap();
-        validator.validate(MeasurementRequestDTO.Update.class);
+        validate();
     }
+
+    @Override
+    @Validated(Update.class)
+    public void validate() throws IncorrectDataValidateException {
+
+        Set<ConstraintViolation<MeasurementRequestDTO>> violations = validator.validate(this, Update.class);
+
+        if(!violations.isEmpty()){
+            throw new IncorrectDataValidateException(violations);
+        }
+    }
+
 }

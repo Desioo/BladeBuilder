@@ -1,5 +1,6 @@
 package com.example.bladebuilder.controller;
 
+import com.example.bladebuilder.exception.IncorrectDataValidateException;
 import com.example.bladebuilder.model.entity.Measurement;
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import com.example.bladebuilder.model.response.MeasurementWithCalculationsDTO;
@@ -23,7 +24,7 @@ public class MeasurementController {
 
     @PostMapping("")
     @ResponseBody
-    public MeasurementWithCalculationsDTO count(@RequestBody @Valid MeasurementRequestDTO measurementRequestDTO){
+    public MeasurementWithCalculationsDTO count(@RequestBody @Valid MeasurementRequestDTO measurementRequestDTO) throws IncorrectDataValidateException {
        return measurementService.count(measurementRequestDTO);
     }
 

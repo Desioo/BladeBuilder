@@ -1,5 +1,6 @@
 package com.example.bladebuilder.service;
 
+import com.example.bladebuilder.exception.UserDataTakenException;
 import com.example.bladebuilder.model.entity.User;
 import com.example.bladebuilder.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -55,5 +56,14 @@ public class UserService implements ServiceInterface<User> {
 
         return null;
 
+    }
+
+    public void checkPasswordIsFree(String password) throws UserDataTakenException {
+
+        User user= findUserPassword(password);
+
+        if(user != null){
+            throw new UserDataTakenException();
+        }
     }
 }
