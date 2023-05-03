@@ -69,9 +69,17 @@ public class UserService implements ServiceInterface<User> {
 
     public User findInactiveUserByName(String name) throws UserDataTakenException {
 
-        return findOptionalUserByName(name)
-                .filter(user -> !user.getActive())
-                .orElseThrow(UserDataTakenException::new);
+        Optional<User> optionalUserByName = findOptionalUserByName(name);
+
+        if (optionalUserByName.isPresent()) {
+            if (optionalUserByName.get().getActive()) {
+                throw new UserDataTakenException();
+            } else {
+                return optionalUserByName.get();
+            }
+        } else {
+            return null;
+        }
 
     }
 }
