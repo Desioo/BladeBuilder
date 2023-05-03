@@ -4,6 +4,7 @@ import com.example.bladebuilder.model.calculate.Dimension;
 import com.example.bladebuilder.model.entity.Measurement;
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import com.example.bladebuilder.service.UserService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
@@ -17,6 +18,7 @@ public class MeasurementConverter implements Converter<MeasurementRequestDTO, Me
     @Autowired
     private UserService userService;
 
+    @SneakyThrows
     @Override
     public Measurement convert(MeasurementRequestDTO requestDTO) {
 
@@ -25,7 +27,7 @@ public class MeasurementConverter implements Converter<MeasurementRequestDTO, Me
         ZonedDateTime warsawDateTime = ZonedDateTime.now(ZoneId.of("Europe/Warsaw"));
 
         measurement.setThickness(requestDTO.getThickness());
-        measurement.setUser(userService.findUserPassword(requestDTO.getUserPassword()));
+        measurement.setUser(userService.findUserByPassword(requestDTO.getUserPassword()));
         measurement.setDimensionsWithQuantity(changeDimensionsToText(requestDTO.getDimensionsList()));
         measurement.setDate(warsawDateTime.toLocalDate());
         measurement.setTime(warsawDateTime.toLocalTime());

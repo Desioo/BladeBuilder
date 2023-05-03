@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -39,10 +38,20 @@ public class UserController {
     public ResponseEntity<String> add(@RequestBody @Valid User user) throws UserDataTakenException {
 
         userService.checkPasswordIsFree(user.getPassword());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setActive(true);
+        User userByName = userService.findInactiveUserByName(user.getName());
 
-        userService.save(user);
+        if (userByName == null) {
+
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setActive(true);
+            userService.save(user);
+
+        } else {
+
+            userByName.setPassword(passwordEncoder.encode(user.getPassword()));
+            userByName.setActive(true);
+            userService.save(userByName);
+        }
 
         return ResponseEntity.ok("User add");
     }
@@ -57,14 +66,14 @@ public class UserController {
     }
 
     @PutMapping("/{user}")
-    public ResponseEntity<String> changeUserName(@PathVariable Optional<User> user, @RequestBody String name) {
+    public ResponseEntity<String> changeUserName(@PathVariable Optional<User> user, @RequestBody String name) throws UserDataTakenException {
 
         if (user.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
         User userWithNewName = user.get();
-                userWithNewName.setName(name);
+        userWithNewName.setName(name);
 
         userService.save(userWithNewName);
 

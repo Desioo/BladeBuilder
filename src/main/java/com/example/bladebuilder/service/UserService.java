@@ -1,5 +1,6 @@
 package com.example.bladebuilder.service;
 
+import com.example.bladebuilder.exception.IncorrectPasswordException;
 import com.example.bladebuilder.exception.UserDataTakenException;
 import com.example.bladebuilder.model.entity.User;
 import com.example.bladebuilder.repository.UserRepository;
@@ -23,7 +24,7 @@ public class UserService implements ServiceInterface<User> {
     }
 
     @Override
-    public void remove(User user){
+    public void remove(User user) {
         user.setActive(false);
         save(user);
     }
@@ -42,28 +43,35 @@ public class UserService implements ServiceInterface<User> {
         return userRepository.findAllActiveUsers();
     }
 
-    public User findUserPassword(String password){
+    public User findUserByPassword(String password) throws IncorrectPasswordException {
+        return findOptionalUserByPassword(password).orElseThrow(IncorrectPasswordException::new);
+    }
 
-        //TODO hasło i optional
-
-        List<User> all = findAllActiveUsers();
-
-        for (User user : all) {
-            if(passwordEncoder.matches(password, user.getPassword())){
-                return user;
-            }
-        }
-
-        return null;
-
+    public Optional<User> findOptionalUserByName(String name) {
+        return userRepository.findFirstByName(name);
     }
 
     public void checkPasswordIsFree(String password) throws UserDataTakenException {
 
-        User user= findUserPassword(password);
-
-        if(user != null){
+        if (findOptionalUserByPassword(password).isPresent()) {
             throw new UserDataTakenException();
         }
+
+    }
+
+    private Optional<User> findOptionalUserByPassword(String password) {
+
+        return findAllActiveUsers().stream()
+                .filter(user -> passwordEncoder.matches(password, user.getPassword()))
+                .findFirst();
+
+    }
+
+    public User findInactiveUserByName(String name) throws UserDataTakenException {
+
+        return findOptionalUserByName(name)
+                .filter(user -> !user.getActive())
+                .orElseThrow(UserDataTakenException::new);
+
     }
 }
