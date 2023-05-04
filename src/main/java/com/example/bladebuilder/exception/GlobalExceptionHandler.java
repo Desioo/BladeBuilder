@@ -39,13 +39,19 @@ public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(UserDataTakenException.class)
-    public String handleInvalidPassword() {
+    public String handleInvalidValidUpdateData() {
         return "User data is taken";
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IncorrectPasswordException.class)
-    public String handleSQLIntegrityConstraintViolation() {
+    public String handleInvalidPassword() {
         return "Password is incorrect";
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IncorrectOrdersException.class)
+    public String handleInvalidOrders() {
+        return "Orders list is incorrect";
     }
 }
