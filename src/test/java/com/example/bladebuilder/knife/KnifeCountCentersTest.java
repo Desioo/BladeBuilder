@@ -1,7 +1,7 @@
 package com.example.bladebuilder.knife;
 
-import com.example.bladebuilder.model.calculate.Dimension;
-import com.example.bladebuilder.model.calculate.Knife;
+import com.example.bladebuilder.model.calculation.Dimension;
+import com.example.bladebuilder.model.calculation.Knife;
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import lombok.SneakyThrows;
 import org.junit.Test;

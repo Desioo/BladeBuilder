@@ -1,28 +1,57 @@
 package com.example.bladebuilder.converter.response;
 
-import com.example.bladebuilder.model.entity.Measurement;
+import com.example.bladebuilder.model.calculation.Dimension;
+import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import com.example.bladebuilder.model.response.MeasurementResponseDTO;
+import com.example.bladebuilder.service.UserService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
-public class MeasurementResponseDTOConverter implements Converter<Measurement, MeasurementResponseDTO> {
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.List;
+
+public class MeasurementResponseDTOConverter implements Converter<MeasurementRequestDTO, MeasurementResponseDTO> {
 
     @Autowired
     private UserResponseDTOConverter userResponseDTOConverter;
 
+    @Autowired
+    private UserService userService;
+
+    @SneakyThrows
     @Override
-    public MeasurementResponseDTO convert(Measurement measurement) {
+    public MeasurementResponseDTO convert(MeasurementRequestDTO requestDTO) {
 
-        MeasurementResponseDTO measurementResponseDTO = new MeasurementResponseDTO();
+        MeasurementResponseDTO measurement = new MeasurementResponseDTO();
+        //TODO strefa czasowa
+        ZonedDateTime warsawDateTime = ZonedDateTime.now(ZoneId.of("Europe/Warsaw"));
 
-        measurementResponseDTO.setId(measurement.getId());
-        measurementResponseDTO.setDate(measurement.getDate());
-        measurementResponseDTO.setTime(measurement.getTime());
-        measurementResponseDTO.setThickness(measurement.getThickness());
-        measurementResponseDTO.setDimensionsWithQuantity(measurement.getDimensionsWithQuantity());
-        measurementResponseDTO.setUser(userResponseDTOConverter.convert(measurement.getUser()));
+        measurement.setThickness(requestDTO.getThickness());
+        measurement.setUser(userResponseDTOConverter.convert(userService.findUserByPassword(requestDTO.getUserPassword())));
+        measurement.setDimensionsWithQuantity(changeDimensionsToText(requestDTO.getDimensionsList()));
+        measurement.setDate(warsawDateTime.toLocalDate());
+        measurement.setTime(warsawDateTime.toLocalTime());
 
-        return measurementResponseDTO;
-
+        return measurement;
     }
+
+    private String changeDimensionsToText(List<Dimension> dimensions) {
+
+        StringBuilder dimensionsWithQuantity = new StringBuilder();
+
+        for (int i = 0; i < dimensions.size(); i++) {
+
+            dimensionsWithQuantity.append(dimensions.get(i).getQuantity());
+            dimensionsWithQuantity.append(" X ");
+            dimensionsWithQuantity.append(dimensions.get(i).getSize());
+
+            if (i < dimensions.size() - 1) {
+                dimensionsWithQuantity.append(" + ");
+            }
+        }
+        return dimensionsWithQuantity.toString();
+    }
+
 }

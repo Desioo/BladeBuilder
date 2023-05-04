@@ -7,13 +7,13 @@ import org.springframework.core.convert.converter.Converter;
 
 import java.util.Optional;
 
-public class OptionalUserConverter implements Converter<String, Optional<User>>{
+public class OptionalUserConverter implements Converter<Long, Optional<User>>{
 
     @Autowired
     private UserService userService;
 
     @Override
-    public Optional<User> convert(String value) {
-        return userService.findById(Long.parseLong(value));
+    public Optional<User> convert(Long id) {
+        return userService.findById(id);
     }
 }

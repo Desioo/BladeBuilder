@@ -1,11 +1,13 @@
 package com.example.bladebuilder.conf;
 
-import com.example.bladebuilder.converter.calculation.MeasurementConverter;
+import com.example.bladebuilder.converter.entity.MeasurementConverter;
 import com.example.bladebuilder.converter.request.OptionalOrderByIdConverter;
 import com.example.bladebuilder.converter.request.OptionalUserConverter;
 import com.example.bladebuilder.converter.request.OrderConverter;
 import com.example.bladebuilder.converter.request.OrderListConverter;
 import com.example.bladebuilder.converter.response.MeasurementDetailsConverter;
+import com.example.bladebuilder.converter.response.MeasurementResponseDTOConverter;
+import com.example.bladebuilder.converter.response.MeasurementWithCalculationsConverter;
 import com.example.bladebuilder.converter.response.UserResponseDTOConverter;
 import com.example.bladebuilder.exception.GlobalExceptionHandler;
 import org.springframework.context.MessageSource;
@@ -55,6 +57,8 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addConverter(getOrderConverter());
         registry.addConverter(getOrderListConverter());
         registry.addConverter(getOptionalOrderByIdConverter());
+        registry.addConverter(getMeasurementWithCalculationsConverter());
+        registry.addConverter(getMeasurementResponseDTOConverter());
 
     }
 
@@ -91,6 +95,16 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public OptionalOrderByIdConverter getOptionalOrderByIdConverter() {
         return new OptionalOrderByIdConverter();
+    }
+
+    @Bean
+    public MeasurementWithCalculationsConverter getMeasurementWithCalculationsConverter() {
+        return new MeasurementWithCalculationsConverter();
+    }
+
+    @Bean
+    public MeasurementResponseDTOConverter getMeasurementResponseDTOConverter(){
+        return new MeasurementResponseDTOConverter();
     }
 
     @Bean
