@@ -38,20 +38,15 @@ public class UserController {
     public ResponseEntity<String> add(@RequestBody @Valid User user) throws UserDataTakenException {
 
         userService.checkPasswordIsFree(user.getPassword());
+
         User userByName = userService.findInactiveUserByName(user.getName());
 
-        if (userByName == null) {
+        userByName.setName(user.getName());
+        userByName.setPassword(passwordEncoder.encode(user.getPassword()));
+        userByName.setActive(true);
 
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setActive(true);
-            userService.save(user);
+        userService.save(userByName);
 
-        } else {
-
-            userByName.setPassword(passwordEncoder.encode(user.getPassword()));
-            userByName.setActive(true);
-            userService.save(userByName);
-        }
 
         return ResponseEntity.ok("User add");
     }

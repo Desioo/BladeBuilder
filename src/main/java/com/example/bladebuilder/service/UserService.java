@@ -78,7 +78,7 @@ public class UserService implements ServiceInterface<User> {
                 return optionalUserByName.get();
             }
         } else {
-            return null;
+            return new User();
         }
 
     }

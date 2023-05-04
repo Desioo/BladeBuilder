@@ -2,7 +2,6 @@ package com.example.bladebuilder.service;
 
 import com.example.bladebuilder.converter.entity.MeasurementConverter;
 import com.example.bladebuilder.converter.response.MeasurementWithCalculationsConverter;
-import com.example.bladebuilder.exception.IncorrectUpdateDataValidateException;
 import com.example.bladebuilder.model.entity.Measurement;
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import com.example.bladebuilder.model.response.MeasurementWithCalculationsDTO;
@@ -36,32 +35,19 @@ public class MeasurementService implements ServiceInterface<Measurement> {
 
     @Override
     public Optional<Measurement> findById(Long id) {
-
-        Optional<Measurement> measurement = measurementRepository.findById(id);
-
-        measurement.ifPresent(this::getUserToMeasurement);
-
-        return measurement;
+        return measurementRepository.findById(id);
     }
 
     @Override
     public List<Measurement> findAll() {
-
-        List<Measurement> measurements = measurementRepository.findAllMeasurementOrderByIdDesc();
-        getUsersToMeasurementList(measurements);
-
-        return measurements;
+        return measurementRepository.findAllMeasurementOrderByIdDesc();
     }
 
     public List<Measurement> findAllByDate(LocalDate date){
-
-        List<Measurement> measurements = measurementRepository.findAllByDateOrderByIdDesc(date);
-        getUsersToMeasurementList(measurements);
-
-        return measurements;
+        return measurementRepository.findAllByDateOrderByIdDesc(date);
     }
 
-    public MeasurementWithCalculationsDTO count(MeasurementRequestDTO measurementRequestDTO){
+    public MeasurementWithCalculationsDTO countAndSave(MeasurementRequestDTO measurementRequestDTO){
 
         MeasurementWithCalculationsDTO measurementWithCalculationsDTO
                 = measurementWithCalculationsConverter.convert(measurementRequestDTO);
@@ -71,13 +57,4 @@ public class MeasurementService implements ServiceInterface<Measurement> {
 
         return measurementWithCalculationsDTO;
     }
-
-    private void getUsersToMeasurementList(List<Measurement> measurements){
-        measurements.forEach(m -> Hibernate.initialize(m.getUser()));
-    }
-
-    private void getUserToMeasurement(Measurement measurement){
-       Hibernate.initialize(measurement.getUser());
-    }
-
 }

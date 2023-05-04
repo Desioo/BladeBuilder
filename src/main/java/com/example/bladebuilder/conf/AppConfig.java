@@ -59,6 +59,7 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addConverter(getOptionalOrderByIdConverter());
         registry.addConverter(getMeasurementWithCalculationsConverter());
         registry.addConverter(getMeasurementResponseDTOConverter());
+        registry.addConverter(getMeasurementDetailsConverter());
 
     }
 
