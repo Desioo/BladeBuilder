@@ -1,7 +1,6 @@
 package com.example.bladebuilder.converter.request;
 
 import com.example.bladebuilder.exception.IncorrectOrdersException;
-import com.example.bladebuilder.exception.IncorrectPasswordException;
 import com.example.bladebuilder.model.entity.Order;
 import com.example.bladebuilder.utils.ConverterUtils;
 import lombok.SneakyThrows;
@@ -22,7 +21,7 @@ public class OrderListConverter implements Converter<String, List<Order>> {
     @SneakyThrows
     public List<Order> convert(String orders) {
 
-        if(!orders.matches(ORDERS_REGEX)){
+        if (!orders.matches(ORDERS_REGEX)) {
             throw new IncorrectOrdersException();
         }
 
