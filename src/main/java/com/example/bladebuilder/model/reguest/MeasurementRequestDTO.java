@@ -1,12 +1,11 @@
 package com.example.bladebuilder.model.reguest;
 
 import com.example.bladebuilder.exception.IncorrectUpdateDataValidateException;
-import com.example.bladebuilder.model.calculate.Dimension;
+import com.example.bladebuilder.model.calculation.Dimension;
 import jakarta.validation.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

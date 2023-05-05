@@ -13,6 +13,7 @@ public class UserResponseDTOConverter implements Converter<User, UserResponseDTO
 
         userResponseDTO.setId(user.getId());
         userResponseDTO.setName(user.getName());
+        userResponseDTO.setActive(user.getActive());
 
         return userResponseDTO;
     }

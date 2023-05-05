@@ -1,11 +1,9 @@
 package com.example.bladebuilder.service;
 
-import com.example.bladebuilder.converter.calculation.MeasurementConverter;
-import com.example.bladebuilder.converter.response.MeasurementDetailsConverter;
-import com.example.bladebuilder.exception.IncorrectUpdateDataValidateException;
+import com.example.bladebuilder.converter.entity.MeasurementConverter;
+import com.example.bladebuilder.converter.response.MeasurementWithCalculationsConverter;
 import com.example.bladebuilder.model.entity.Measurement;
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
-import com.example.bladebuilder.model.response.MeasurementDetails;
 import com.example.bladebuilder.model.response.MeasurementWithCalculationsDTO;
 import com.example.bladebuilder.repository.MeasurementRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +19,8 @@ import java.util.Optional;
 public class MeasurementService implements ServiceInterface<Measurement> {
 
     private final MeasurementRepository measurementRepository;
+    private final MeasurementWithCalculationsConverter measurementWithCalculationsConverter;
     private final MeasurementConverter measurementConverter;
-    private final MeasurementDetailsConverter measurementDetailsConverter;
 
 
     @Override
@@ -37,57 +35,26 @@ public class MeasurementService implements ServiceInterface<Measurement> {
 
     @Override
     public Optional<Measurement> findById(Long id) {
-
-        Optional<Measurement> measurement = measurementRepository.findById(id);
-
-        measurement.ifPresent(this::getUserToMeasurement);
-
-        return measurement;
+        return measurementRepository.findById(id);
     }
 
     @Override
     public List<Measurement> findAll() {
-
-        List<Measurement> measurements = measurementRepository.findAllMeasurementOrderByIdDesc();
-        getUsersToMeasurementList(measurements);
-
-        return measurements;
+        return measurementRepository.findAllMeasurementOrderByIdDesc();
     }
 
     public List<Measurement> findAllByDate(LocalDate date){
-
-        List<Measurement> measurements = measurementRepository.findAllByDateOrderByIdDesc(date);
-        getUsersToMeasurementList(measurements);
-
-        return measurements;
+        return measurementRepository.findAllByDateOrderByIdDesc(date);
     }
 
-    public MeasurementWithCalculationsDTO count(MeasurementRequestDTO measurementRequestDTO) throws IncorrectUpdateDataValidateException {
+    public MeasurementWithCalculationsDTO countAndSave(MeasurementRequestDTO measurementRequestDTO){
 
-        //TODO
+        MeasurementWithCalculationsDTO measurementWithCalculationsDTO
+                = measurementWithCalculationsConverter.convert(measurementRequestDTO);
 
-        measurementRequestDTO.countSizeQuantityAndScrap();
+        measurementWithCalculationsDTO.countAll();
+        save(measurementConverter.convert(measurementWithCalculationsDTO.getMeasurement()));
 
-        Measurement measurement = measurementConverter.convert(measurementRequestDTO);
-
-        //TODO walidacja
-
-        if(measurement.getUser().getName().equals("")){
-            throw new  NullPointerException("userName");
-        }
-
-        save(measurement);
-        MeasurementDetails measurementDetails = measurementDetailsConverter.convert(measurementRequestDTO);
-
-        return  new MeasurementWithCalculationsDTO(measurementRequestDTO, measurement, measurementDetails);
+        return measurementWithCalculationsDTO;
     }
-
-    private void getUsersToMeasurementList(List<Measurement> measurements){
-        measurements.forEach(m -> Hibernate.initialize(m.getUser()));
-    }
-
-    private void getUserToMeasurement(Measurement measurement){
-       Hibernate.initialize(measurement.getUser());
-    }
-
 }

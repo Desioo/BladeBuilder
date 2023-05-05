@@ -1,4 +1,4 @@
-package com.example.bladebuilder.model.calculate;
+package com.example.bladebuilder.model.calculation;
 
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import lombok.Getter;

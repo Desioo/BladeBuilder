@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,13 +39,19 @@ public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(UserDataTakenException.class)
-    public String handleInvalidPassword() {
-        return "Password is taken";
+    public String handleInvalidValidUpdateData() {
+        return "User data is taken";
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
-    public String handleSQLIntegrityConstraintViolation(SQLIntegrityConstraintViolationException ex) {
-        return "Data is taken";
+    @ExceptionHandler(IncorrectPasswordException.class)
+    public String handleInvalidPassword() {
+        return "Password is incorrect";
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(IncorrectOrdersException.class)
+    public String handleInvalidOrders() {
+        return "Orders list is incorrect";
     }
 }

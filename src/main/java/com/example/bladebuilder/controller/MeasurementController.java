@@ -25,7 +25,7 @@ public class MeasurementController {
     @PostMapping("")
     @ResponseBody
     public MeasurementWithCalculationsDTO count(@RequestBody @Valid MeasurementRequestDTO measurementRequestDTO) throws IncorrectUpdateDataValidateException {
-       return measurementService.count(measurementRequestDTO);
+       return measurementService.countAndSave(measurementRequestDTO);
     }
 
     @GetMapping("/all")

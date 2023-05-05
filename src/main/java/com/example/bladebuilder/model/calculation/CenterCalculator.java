@@ -1,4 +1,4 @@
-package com.example.bladebuilder.model.calculate;
+package com.example.bladebuilder.model.calculation;
 
 public interface CenterCalculator {
 

@@ -1,31 +1,19 @@
 package com.example.bladebuilder.model.response;
 
-import com.example.bladebuilder.model.calculate.CenterCalculator;
-import com.example.bladebuilder.model.calculate.Knife;
-import com.example.bladebuilder.model.calculate.Separator;
-import com.example.bladebuilder.model.entity.Measurement;
-import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
-import lombok.Getter;
+import com.example.bladebuilder.model.calculation.CenterCalculator;
+import com.example.bladebuilder.model.calculation.Knife;
+import com.example.bladebuilder.model.calculation.Separator;
+import lombok.Data;
 
-@Getter
+@Data
 public class MeasurementWithCalculationsDTO {
 
-    private final Separator separator;
-    private final Knife knife;
-    private final Measurement measurement;
-    private final MeasurementDetails measurementDetails;
+    private  Separator separator;
+    private  Knife knife;
+    private  MeasurementResponseDTO measurement;
+    private  MeasurementDetails measurementDetails;
 
-    public MeasurementWithCalculationsDTO(MeasurementRequestDTO measurementRequestDTO, Measurement measurement, MeasurementDetails measurementDetails) {
-
-        this.separator = new Separator(measurementRequestDTO);
-        this.knife = new Knife(measurementRequestDTO);
-        this.measurement = measurement;
-        this.measurementDetails = measurementDetails;
-
-        countAll();
-    }
-
-    private void countAll() {
+    public void countAll() {
 
         countCenters(separator);
         countCenters(knife);
