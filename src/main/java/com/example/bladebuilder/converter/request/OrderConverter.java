@@ -13,15 +13,15 @@ public class OrderConverter implements Converter<String, Order> {
         Order order = new Order();
 
         order.setIdSeq(Integer.parseInt(orderSplit[0]));
-        order.setSeq(Integer.parseInt(orderSplit[5]));
-        order.setCustomer(orderSplit[6]);
-        order.setDescription(orderSplit[8]);
-        order.setInvoiceNumber(orderSplit[7]);
-        order.setThickness(orderSplit[9]);
-        order.setWidth(orderSplit[10]);
+        order.setSeq(Integer.parseInt(orderSplit[1]));
+        order.setCustomer(orderSplit[3]);
+        order.setDescription(orderSplit[4]);
+        order.setInvoiceNumber(orderSplit[5]);
+        order.setThickness(orderSplit[6]);
+        order.setWidth(orderSplit[7]);
 
-        if (orderSplit.length >= 15) {
-            order.setLocation(orderSplit[14]);
+        if (orderSplit.length >= 11) {
+            order.setLocation(orderSplit[10]);
         } else {
             order.setLocation("");
         }

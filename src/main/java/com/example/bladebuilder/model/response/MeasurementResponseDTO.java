@@ -1,5 +1,6 @@
 package com.example.bladebuilder.model.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -11,8 +12,10 @@ public class MeasurementResponseDTO {
 
     private long id;
 
+    @JsonFormat(pattern = "dd.MM.yyyy")
     private LocalDate date;
 
+    @JsonFormat(pattern = "HH:mm")
     private LocalTime time;
 
     private BigDecimal thickness;
