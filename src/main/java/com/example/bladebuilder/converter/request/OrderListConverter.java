@@ -21,9 +21,9 @@ public class OrderListConverter implements Converter<String, List<Order>> {
     @SneakyThrows
     public List<Order> convert(String orders) {
 
-        if (!orders.matches(ORDERS_REGEX)) {
-            throw new IncorrectOrdersException();
-        }
+ //       if (!orders.matches(ORDERS_REGEX)) {
+//            throw new IncorrectOrdersException();
+        //      }
 
         orders = orders.replaceAll("\"", "");
 
