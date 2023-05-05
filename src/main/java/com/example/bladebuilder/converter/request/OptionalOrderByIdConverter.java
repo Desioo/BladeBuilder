@@ -14,7 +14,7 @@ public class OptionalOrderByIdConverter implements Converter<String, Optional<Or
 
     @Override
     public Optional<Order> convert(String id) {
-        return orderService.findById(Long.parseLong(id));
+        return orderService.findById(Long.valueOf(id));
     }
 
 }
