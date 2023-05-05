@@ -61,7 +61,7 @@ public class UserController {
     }
 
     @PutMapping("/{user}")
-    public ResponseEntity<String> changeUserName(@PathVariable Optional<User> user, @RequestBody String name) throws UserDataTakenException {
+    public ResponseEntity<String> changeUserName(@PathVariable Optional<User> user, @RequestBody String name){
 
         if (user.isEmpty()) {
             return ResponseEntity.notFound().build();
