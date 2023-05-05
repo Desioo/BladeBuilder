@@ -31,3 +31,11 @@ in time savings and improved work efficiency.
 ## Documentation
 Incomplete Polish documentation for the project:
 https://docs.google.com/document/d/1pbnKIpVeEKVEleikDQOwVWb5qhAfFNbidn59PnAJ8VM/edit
+
+## Website
+
+A functioning website with the project: 
+https://desioo.github.io/BladeBuilderGUI/
+
+Sample orders:
+https://docs.google.com/spreadsheets/d/179q7bqDTlXlbuQA2_AvZw4RTs0FU0HPCMCb9JOSefLM/edit#gid=0
