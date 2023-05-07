@@ -1,4 +1,4 @@
-package com.example.bladebuilder.separator;
+package com.example.bladebuilder.model.calculation.separator;
 
 import com.example.bladebuilder.model.calculation.Dimension;
 import com.example.bladebuilder.model.calculation.Separator;

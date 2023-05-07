@@ -1,4 +1,4 @@
-package com.example.bladebuilder.knife;
+package com.example.bladebuilder.model.calculation.knife;
 
 import com.example.bladebuilder.model.calculation.Dimension;
 import com.example.bladebuilder.model.calculation.Knife;
