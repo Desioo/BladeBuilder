@@ -1,6 +1,5 @@
 package com.example.bladebuilder.controller;
 
-import com.example.bladebuilder.exception.IncorrectUpdateDataValidateException;
 import com.example.bladebuilder.model.entity.Measurement;
 import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
 import com.example.bladebuilder.model.response.MeasurementWithCalculationsDTO;
@@ -24,19 +23,19 @@ public class MeasurementController {
 
     @PostMapping("")
     @ResponseBody
-    public MeasurementWithCalculationsDTO count(@RequestBody @Valid MeasurementRequestDTO measurementRequestDTO) throws IncorrectUpdateDataValidateException {
-       return measurementService.countAndSave(measurementRequestDTO);
+    public MeasurementWithCalculationsDTO count(@RequestBody @Valid MeasurementRequestDTO measurementRequestDTO) {
+        return measurementService.countAndSave(measurementRequestDTO);
     }
 
     @GetMapping("/all")
     @ResponseBody
-    public List<Measurement> all(){
+    public List<Measurement> all() {
         return measurementService.findAll();
     }
 
     @GetMapping("/all/date/{date}")
     @ResponseBody
-    public List<Measurement> all(@PathVariable LocalDate date){
-       return measurementService.findAllByDate(date);
+    public List<Measurement> all(@PathVariable LocalDate date) {
+        return measurementService.findAllByDate(date);
     }
 }
