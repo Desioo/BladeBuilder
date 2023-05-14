@@ -10,6 +10,8 @@ and enables searching for them by date. Additionally, the application has been e
 of a printable table and displaying detailed information for each order. BladeBuilder makes it easy to manage calculations and orders, resulting 
 in time savings and improved work efficiency.
 
+Please note that the BladeBuilder project is still ongoing and I am continuously working on it. I believe that through further development and refinement of this tool, I will be able to introduce even more functionality and improvements to meet users' expectations. My commitment to this project is unwavering, and my goal is to deliver a complete, intuitive, and versatile tool that greatly facilitates the calculation process, order management, and enhances work efficiency.
+
 ## Features
 <li>Counting separators and knives 
 <li>Printing results
