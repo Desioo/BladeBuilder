@@ -24,7 +24,6 @@ in time savings and improved work efficiency.
 <li>Hibernate 
 <li>Git 
 <li>Apache Maven 
-<li>Java Persistence API (JPA) 
 <li>JUnit 
 
 ## Documentation
