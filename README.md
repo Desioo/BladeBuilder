@@ -21,7 +21,6 @@ in time savings and improved work efficiency.
 ## Technology
 <li>Spring framework 
 <li>MySQL database 
-<li>HTML, CSS, and JavaScript 
 <li>Hibernate 
 <li>Git 
 <li>Apache Maven 
