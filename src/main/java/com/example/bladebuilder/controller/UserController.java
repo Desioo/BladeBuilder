@@ -11,13 +11,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
 @Validated
@@ -28,13 +29,12 @@ public class UserController {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping("")
-    @ResponseBody
     public List<UserResponseDTO> all() {
         return ConverterUtils.convertList(userService.findAllActiveUsers(), userResponseDTOConverter);
     }
 
+    @Transactional
     @PostMapping("")
-    @ResponseBody
     public ResponseEntity<String> add(@RequestBody @Valid User user) throws UserDataTakenException {
 
         userService.checkPasswordIsFree(user.getPassword());
@@ -51,8 +51,12 @@ public class UserController {
         return ResponseEntity.ok("User add");
     }
 
-    @DeleteMapping("/{user}")
-    public ResponseEntity<String> remove(@PathVariable Optional<User> user) {
+    @Transactional
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> remove(@PathVariable String id) {
+
+        Optional<User> user = userService.findById(Long.parseLong(id));
+
         if (user.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -60,8 +64,11 @@ public class UserController {
         return ResponseEntity.ok("User removed");
     }
 
-    @PutMapping("/{user}")
-    public ResponseEntity<String> changeUserName(@PathVariable Optional<User> user, @RequestBody String name){
+    @Transactional
+    @PutMapping("/{id}")
+    public ResponseEntity<String> changeUserName(@PathVariable String id, @RequestBody String name){
+
+        Optional<User> user = userService.findById(Long.parseLong(id));
 
         if (user.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -75,8 +82,11 @@ public class UserController {
         return ResponseEntity.ok("User name changed");
     }
 
-    @PutMapping("/password/{user}")
-    public ResponseEntity<String> changeUserPassword(@PathVariable Optional<User> user, @RequestBody String password) throws UserDataTakenException {
+    @Transactional
+    @PutMapping("/password/{id}")
+    public ResponseEntity<String> changeUserPassword(@PathVariable String id, @RequestBody String password) throws UserDataTakenException {
+
+        Optional<User> user = userService.findById(Long.parseLong(id));
 
         if (user.isEmpty()) {
             return ResponseEntity.notFound().build();

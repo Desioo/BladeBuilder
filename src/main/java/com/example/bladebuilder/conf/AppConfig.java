@@ -1,8 +1,6 @@
 package com.example.bladebuilder.conf;
 
 import com.example.bladebuilder.converter.entity.MeasurementConverter;
-import com.example.bladebuilder.converter.request.OptionalOrderByIdConverter;
-import com.example.bladebuilder.converter.request.OptionalUserConverter;
 import com.example.bladebuilder.converter.request.OrderConverter;
 import com.example.bladebuilder.converter.request.OrderListConverter;
 import com.example.bladebuilder.converter.response.MeasurementDetailsConverter;
@@ -52,11 +50,9 @@ public class AppConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
 
         registry.addConverter(getUserResponseDTOConverter());
-        registry.addConverter(getUserConverter());
         registry.addConverter(getMeasurementConverter());
         registry.addConverter(getOrderConverter());
         registry.addConverter(getOrderListConverter());
-        registry.addConverter(getOptionalOrderByIdConverter());
         registry.addConverter(getMeasurementWithCalculationsConverter());
         registry.addConverter(getMeasurementResponseDTOConverter());
         registry.addConverter(getMeasurementDetailsConverter());
@@ -66,11 +62,6 @@ public class AppConfig implements WebMvcConfigurer {
     @Bean
     public UserResponseDTOConverter getUserResponseDTOConverter() {
         return new UserResponseDTOConverter();
-    }
-
-    @Bean
-    public OptionalUserConverter getUserConverter() {
-        return new OptionalUserConverter();
     }
 
     @Bean
@@ -94,17 +85,12 @@ public class AppConfig implements WebMvcConfigurer {
     }
 
     @Bean
-    public OptionalOrderByIdConverter getOptionalOrderByIdConverter() {
-        return new OptionalOrderByIdConverter();
-    }
-
-    @Bean
     public MeasurementWithCalculationsConverter getMeasurementWithCalculationsConverter() {
         return new MeasurementWithCalculationsConverter();
     }
 
     @Bean
-    public MeasurementResponseDTOConverter getMeasurementResponseDTOConverter(){
+    public MeasurementResponseDTOConverter getMeasurementResponseDTOConverter() {
         return new MeasurementResponseDTOConverter();
     }
 

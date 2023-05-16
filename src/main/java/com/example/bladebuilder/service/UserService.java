@@ -72,14 +72,17 @@ public class UserService implements ServiceInterface<User> {
         Optional<User> optionalUserByName = findOptionalUserByName(name);
 
         if (optionalUserByName.isPresent()) {
-            if (optionalUserByName.get().getActive()) {
+
+            User user = optionalUserByName.get();
+
+            if (user.getActive()) {
                 throw new UserDataTakenException();
             } else {
-                return optionalUserByName.get();
+                return user;
             }
+
         } else {
             return new User();
         }
-
     }
 }

@@ -6,14 +6,14 @@ import com.example.bladebuilder.model.response.MeasurementWithCalculationsDTO;
 import com.example.bladebuilder.service.MeasurementService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/measurement")
 @RequiredArgsConstructor
 @Validated
@@ -21,20 +21,18 @@ public class MeasurementController {
 
     private final MeasurementService measurementService;
 
+    @Transactional
     @PostMapping("")
-    @ResponseBody
     public MeasurementWithCalculationsDTO count(@RequestBody @Valid MeasurementRequestDTO measurementRequestDTO) {
         return measurementService.countAndSave(measurementRequestDTO);
     }
 
     @GetMapping("/all")
-    @ResponseBody
     public List<Measurement> all() {
         return measurementService.findAll();
     }
 
     @GetMapping("/all/date/{date}")
-    @ResponseBody
     public List<Measurement> all(@PathVariable LocalDate date) {
         return measurementService.findAllByDate(date);
     }
