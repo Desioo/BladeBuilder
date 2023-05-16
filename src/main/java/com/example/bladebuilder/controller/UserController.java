@@ -11,13 +11,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
 @Validated
@@ -28,13 +29,12 @@ public class UserController {
     private final BCryptPasswordEncoder passwordEncoder;
 
     @GetMapping("")
-    @ResponseBody
     public List<UserResponseDTO> all() {
         return ConverterUtils.convertList(userService.findAllActiveUsers(), userResponseDTOConverter);
     }
 
+    @Transactional
     @PostMapping("")
-    @ResponseBody
     public ResponseEntity<String> add(@RequestBody @Valid User user) throws UserDataTakenException {
 
         userService.checkPasswordIsFree(user.getPassword());
@@ -51,6 +51,7 @@ public class UserController {
         return ResponseEntity.ok("User add");
     }
 
+    @Transactional
     @DeleteMapping("/{user}")
     public ResponseEntity<String> remove(@PathVariable Optional<User> user) {
         if (user.isEmpty()) {
@@ -60,6 +61,7 @@ public class UserController {
         return ResponseEntity.ok("User removed");
     }
 
+    @Transactional
     @PutMapping("/{user}")
     public ResponseEntity<String> changeUserName(@PathVariable Optional<User> user, @RequestBody String name){
 
@@ -75,6 +77,7 @@ public class UserController {
         return ResponseEntity.ok("User name changed");
     }
 
+    @Transactional
     @PutMapping("/password/{user}")
     public ResponseEntity<String> changeUserPassword(@PathVariable Optional<User> user, @RequestBody String password) throws UserDataTakenException {
 

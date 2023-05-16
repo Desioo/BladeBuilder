@@ -5,13 +5,13 @@ import com.example.bladebuilder.model.entity.Order;
 import com.example.bladebuilder.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/order")
 @RequiredArgsConstructor
 public class OrderController {
@@ -19,8 +19,8 @@ public class OrderController {
     private final OrderListConverter orderListConverter;
     private final OrderService orderService;
 
+    @Transactional
     @PostMapping()
-    @ResponseBody
     public String add(@RequestBody String ordersToConvert) {
 
         List<Order> orders = orderListConverter.convert(ordersToConvert);
@@ -35,13 +35,12 @@ public class OrderController {
     }
 
     @GetMapping()
-    @ResponseBody
     public List<Order> all() {
         return orderService.findAll();
     }
 
+    @Transactional
     @DeleteMapping("/{order}")
-    @ResponseBody
     public ResponseEntity<String> remove(@PathVariable Optional<Order> order) {
 
         if (order.isEmpty()) {
