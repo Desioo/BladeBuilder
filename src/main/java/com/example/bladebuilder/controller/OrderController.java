@@ -40,8 +40,10 @@ public class OrderController {
     }
 
     @Transactional
-    @DeleteMapping("/{order}")
-    public ResponseEntity<String> remove(@PathVariable Optional<Order> order) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> remove(@PathVariable String id) {
+
+        Optional<Order> order = orderService.findById(Long.parseLong(id));
 
         if (order.isEmpty()) {
             return ResponseEntity.notFound().build();

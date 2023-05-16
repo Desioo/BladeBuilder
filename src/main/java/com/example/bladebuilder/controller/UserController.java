@@ -52,8 +52,11 @@ public class UserController {
     }
 
     @Transactional
-    @DeleteMapping("/{user}")
-    public ResponseEntity<String> remove(@PathVariable Optional<User> user) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> remove(@PathVariable String id) {
+
+        Optional<User> user = userService.findById(Long.parseLong(id));
+
         if (user.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
@@ -62,8 +65,10 @@ public class UserController {
     }
 
     @Transactional
-    @PutMapping("/{user}")
-    public ResponseEntity<String> changeUserName(@PathVariable Optional<User> user, @RequestBody String name){
+    @PutMapping("/{id}")
+    public ResponseEntity<String> changeUserName(@PathVariable String id, @RequestBody String name){
+
+        Optional<User> user = userService.findById(Long.parseLong(id));
 
         if (user.isEmpty()) {
             return ResponseEntity.notFound().build();
@@ -78,8 +83,10 @@ public class UserController {
     }
 
     @Transactional
-    @PutMapping("/password/{user}")
-    public ResponseEntity<String> changeUserPassword(@PathVariable Optional<User> user, @RequestBody String password) throws UserDataTakenException {
+    @PutMapping("/password/{id}")
+    public ResponseEntity<String> changeUserPassword(@PathVariable String id, @RequestBody String password) throws UserDataTakenException {
+
+        Optional<User> user = userService.findById(Long.parseLong(id));
 
         if (user.isEmpty()) {
             return ResponseEntity.notFound().build();
