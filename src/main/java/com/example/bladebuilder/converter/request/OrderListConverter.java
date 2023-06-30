@@ -15,7 +15,7 @@ public class OrderListConverter implements Converter<String, List<Order>> {
     private OrderConverter orderConverter;
 
     private static final String ORDERS_REGEX = "^\"((\\d+\\\\t){2}\\d{4}-\\d{2}-\\d{2}\\\\t((.+)\\\\t){2}" +
-            "(.+)\\\\t([\\d ,]+\\\\t){3}([A-Z\\d]{3})?\\n?)+\"$";
+            "(.+)\\\\t([\\d ,]+\\\\t){3}([A-Za-z\\d]{0,4})?\\n?)+\"$";
 
     @Override
     @SneakyThrows
