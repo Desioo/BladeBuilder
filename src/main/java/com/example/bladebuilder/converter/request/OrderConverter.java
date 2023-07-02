@@ -3,29 +3,41 @@ package com.example.bladebuilder.converter.request;
 import com.example.bladebuilder.model.entity.Order;
 import org.springframework.core.convert.converter.Converter;
 
-public class OrderConverter implements Converter<String, Order> {
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class OrderConverter implements Converter<Map<String, Map<String, Integer>>, Order> {
 
     @Override
-    public Order convert(String stringToConvert) {
+    public Order convert(Map<String, Map<String, Integer>> ordersAndElementsIndex) {
 
-        String[] orderSplit = stringToConvert.split("\\\\t");
+        String orderToConvert = String.join("", ordersAndElementsIndex.keySet());
+
+        String[] orderSplit = orderToConvert.split("\\\\t");
+
+        Map<String, Integer> elementsIndex = ordersAndElementsIndex.get(orderToConvert);
+
+        return createNewOrder(orderSplit, elementsIndex);
+    }
+
+    private Order createNewOrder(String[] orderSplit, Map<String, Integer> elementsIndex) {
 
         Order order = new Order();
 
-        order.setIdSeq(Integer.parseInt(orderSplit[0].replaceAll(" ", "")));
-        order.setSeq(Integer.parseInt(orderSplit[1].replaceAll(" ", "")));
-        order.setCustomer(orderSplit[3]);
-        order.setDescription(orderSplit[4]);
-        order.setInvoiceNumber(orderSplit[5]);
-        order.setThickness(orderSplit[6]);
-        order.setWidth(orderSplit[7]);
+        order.setIdSeq(Integer.parseInt(orderSplit[elementsIndex.get("idSeq") != null ?
+                elementsIndex.get("idSeq") : 0]));
 
-        if (orderSplit.length >= 11) {
-            order.setLocation(orderSplit[10]);
-        } else {
-            order.setLocation("");
-        }
+        order.setSeq(Integer.parseInt(orderSplit[elementsIndex.get("seq")].replaceAll(" ", "")));
+        order.setCustomer(orderSplit[elementsIndex.get("customer")]);
+        order.setDescription(orderSplit[elementsIndex.get("description")]);
+        order.setInvoiceNumber(orderSplit[elementsIndex.get("invoiceNumber")]);
+        order.setThickness(orderSplit[elementsIndex.get("thickness")]);
+        order.setWidth(orderSplit[elementsIndex.get("width")]);
+
+        order.setLocation(orderSplit.length >= elementsIndex.get("ordersElementsLength") ?
+                orderSplit[elementsIndex.get("location")] : "");
 
         return order;
+
     }
 }
