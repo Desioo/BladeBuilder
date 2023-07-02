@@ -22,7 +22,7 @@ public class OrderConverter implements Converter<String, Order> {
         order.setThickness(orderSplit[6]);
         order.setWidth(orderSplit[7]);
 
-        order.setLocation(orderSplit.length <= 11 ? orderSplit[10] : "");
+        order.setLocation(orderSplit.length >= 11 ? orderSplit[10] : "");
 
         return order;
     }
