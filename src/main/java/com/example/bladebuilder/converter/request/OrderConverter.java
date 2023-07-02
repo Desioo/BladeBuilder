@@ -3,6 +3,8 @@ package com.example.bladebuilder.converter.request;
 import com.example.bladebuilder.model.entity.Order;
 import org.springframework.core.convert.converter.Converter;
 
+import java.util.Map;
+
 public class OrderConverter implements Converter<String, Order> {
 
     @Override
@@ -20,11 +22,7 @@ public class OrderConverter implements Converter<String, Order> {
         order.setThickness(orderSplit[6]);
         order.setWidth(orderSplit[7]);
 
-        if (orderSplit.length >= 11) {
-            order.setLocation(orderSplit[10]);
-        } else {
-            order.setLocation("");
-        }
+        order.setLocation(orderSplit.length <= 11 ? orderSplit[10] : "");
 
         return order;
     }

@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ConverterUtils {
+public class ListConverter {
 
     public static <A, B> List<B> convertList(List<A> list, Converter<A, B> converter){
       return list.stream()

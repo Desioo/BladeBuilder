@@ -5,12 +5,11 @@ import com.example.bladebuilder.exception.UserDataTakenException;
 import com.example.bladebuilder.model.entity.User;
 import com.example.bladebuilder.model.response.UserResponseDTO;
 import com.example.bladebuilder.service.UserService;
-import com.example.bladebuilder.utils.ConverterUtils;
+import com.example.bladebuilder.utils.ListConverter;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +29,7 @@ public class UserController {
 
     @GetMapping("")
     public List<UserResponseDTO> all() {
-        return ConverterUtils.convertList(userService.findAllActiveUsers(), userResponseDTOConverter);
+        return ListConverter.convertList(userService.findAllActiveUsers(), userResponseDTOConverter);
     }
 
     @Transactional
