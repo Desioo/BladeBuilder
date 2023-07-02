@@ -8,8 +8,10 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class OrderListConverter implements Converter<String, List<Order>> {
 
@@ -29,7 +31,7 @@ public class OrderListConverter implements Converter<String, List<Order>> {
 
             if (orders.matches(regex.getKey())) {
                 orders = orders.replaceAll("\"", "");
-                return ListConverter.convertArrayToList(orders.split("\\\\n"), orderConverter);
+                return convertOrdersList(orders.split("\\\\n"), orderConverter, map.get(regex.getKey()));
             }
 
         }
@@ -37,4 +39,11 @@ public class OrderListConverter implements Converter<String, List<Order>> {
         throw new IncorrectOrdersException();
 
     }
+
+    private static List<Order> convertOrdersList(
+            String[] list, Converter<Map<String, Map<String, Integer>>, Order>converter, Map<String, Integer> map){
+        return Arrays.stream(list)
+                .map(e -> converter.convert(Map.of(e, map))).collect(Collectors.toList());
+    }
+
 }
