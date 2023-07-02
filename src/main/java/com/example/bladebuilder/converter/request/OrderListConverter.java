@@ -2,7 +2,6 @@ package com.example.bladebuilder.converter.request;
 
 import com.example.bladebuilder.exception.IncorrectOrdersException;
 import com.example.bladebuilder.model.entity.Order;
-import com.example.bladebuilder.utils.ListConverter;
 import com.example.bladebuilder.utils.RegexMapMatcher;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class OrderListConverter implements Converter<String, List<Order>> {
     }
 
     private static List<Order> convertOrdersList(
-            String[] list, Converter<Map<String, Map<String, Integer>>, Order>converter, Map<String, Integer> map){
+            String[] list, Converter<Map<String, Map<String, Integer>>, Order> converter, Map<String, Integer> map) {
         return Arrays.stream(list)
                 .map(e -> converter.convert(Map.of(e, map))).collect(Collectors.toList());
     }

@@ -17,6 +17,11 @@ public class OrderConverter implements Converter<Map<String, Map<String, Integer
 
         Map<String, Integer> elementsIndex = ordersAndElementsIndex.get(orderToConvert);
 
+        return createNewOrder(orderSplit, elementsIndex);
+    }
+
+    private Order createNewOrder(String[] orderSplit, Map<String, Integer> elementsIndex) {
+
         Order order = new Order();
 
         order.setIdSeq(Integer.parseInt(orderSplit[elementsIndex.get("idSeq") != null ?
@@ -29,8 +34,10 @@ public class OrderConverter implements Converter<Map<String, Map<String, Integer
         order.setThickness(orderSplit[elementsIndex.get("thickness")]);
         order.setWidth(orderSplit[elementsIndex.get("width")]);
 
-        order.setLocation(orderSplit.length >= elementsIndex.get("ordersElementsLength") ? orderSplit[elementsIndex.get("location")] : "");
+        order.setLocation(orderSplit.length >= elementsIndex.get("ordersElementsLength") ?
+                orderSplit[elementsIndex.get("location")] : "");
 
         return order;
+
     }
 }
