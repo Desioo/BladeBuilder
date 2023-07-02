@@ -12,8 +12,8 @@ public class OrderConverter implements Converter<String, Order> {
 
         Order order = new Order();
 
-        order.setIdSeq(Integer.parseInt(orderSplit[0]));
-        order.setSeq(Integer.parseInt(orderSplit[1]));
+        order.setIdSeq(Integer.parseInt(orderSplit[0].replaceAll(" ", "")));
+        order.setSeq(Integer.parseInt(orderSplit[1].replaceAll(" ", "")));
         order.setCustomer(orderSplit[3]);
         order.setDescription(orderSplit[4]);
         order.setInvoiceNumber(orderSplit[5]);
