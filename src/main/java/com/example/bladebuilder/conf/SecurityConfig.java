@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.stereotype.Controller;
@@ -16,30 +16,26 @@ import java.util.List;
 @Controller
 public class SecurityConfig {
 
-    @Bean
-    public BCryptPasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Bean
     public InMemoryUserDetailsManager get() {
+
         UserDetails admin = User.withUsername("Grzesiu")
-                .password("1234")
+                .password(passwordEncoder.encode("123456"))
                 .roles("ADMIN")
                 .build();
-        UserDetails user = User.withUsername("user")
-                .password("user1")
-                .roles("USER")
-                .build();
 
-        return new InMemoryUserDetailsManager(List.of(user, admin));
+
+        return new InMemoryUserDetailsManager(List.of(admin));
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.httpBasic().and().authorizeHttpRequests()
-                .requestMatchers("/user").hasAnyRole("ADMIN", "USER")
+                .requestMatchers("/user").hasAuthority("ROLE_ADMIN")
                 .anyRequest().permitAll()
                 .and()
                 .csrf().disable()
