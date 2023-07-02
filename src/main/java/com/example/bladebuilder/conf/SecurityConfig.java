@@ -39,6 +39,8 @@ public class SecurityConfig {
                 .anyRequest().permitAll()
                 .and()
                 .csrf().disable()
+                .cors()
+                .and()
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .logout().permitAll();
 
