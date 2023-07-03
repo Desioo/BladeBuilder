@@ -16,8 +16,8 @@ public class UserDetailsImpl implements org.springframework.security.core.userde
 
     public UserDetailsImpl(User user) {
         this.user = user;
-        this.authorities = Arrays.stream(user.getRoles().split(","))
-                .map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        this.authorities = user.getRoles().stream()
+                .map(r -> new SimpleGrantedAuthority(r.getName())).collect(Collectors.toList());
     }
 
     @Override

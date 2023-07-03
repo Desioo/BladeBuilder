@@ -1,8 +1,10 @@
 package com.example.bladebuilder.conf;
 
 import com.example.bladebuilder.model.entity.User;
+import com.example.bladebuilder.model.security.Role;
+import com.example.bladebuilder.model.security.UserDetailsServiceImpl;
+import com.example.bladebuilder.repository.RoleRepository;
 import com.example.bladebuilder.repository.UserRepository;
-import com.example.bladebuilder.service.UserDetailsServiceImpl;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +17,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import java.util.List;
+
 @Configuration
 public class SecurityConfig {
 
@@ -24,31 +28,12 @@ public class SecurityConfig {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    RoleRepository roleRepository;
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImpl();
-    }
-
-    @PostConstruct
-    public void init() {
-
-        if (userRepository.count() == 0 || userRepository.findAllUserByRoles("ROLE_ADMIN").isEmpty()) {
-            // Tworzenie roli "Admin" (jeśli nie istnieje)
-//            Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-//            if (adminRole == null) {
-//                adminRole = new Role("ROLE_ADMIN");
-//                roleRepository.save(adminRole);
-//            }
-
-            // Tworzenie użytkownika z rolą "Admin"
-            User adminUser = new User();
-            adminUser.setId(1);
-            adminUser.setName("Grzesiu");
-            adminUser.setPassword(passwordEncoder.encode("123456"));
-            adminUser.setRoles("ROLE_ADMIN");
-            adminUser.setActive(true);
-            userRepository.save(adminUser);
-        }
     }
 
     @Bean
@@ -73,5 +58,36 @@ public class SecurityConfig {
         authenticationProvider.setUserDetailsService(userDetailsService());
         authenticationProvider.setPasswordEncoder(passwordEncoder);
         return authenticationProvider;
+    }
+
+    @PostConstruct
+    public void init() {
+
+        if (roleRepository.findRoleByName("ROLE_ADMIN") == null) {
+            createAndSaveRoleAdmin();
+        }
+
+        Role adminRole = roleRepository.findRoleByName("ROLE_ADMIN");
+
+        if (userRepository.count() == 0 || userRepository.findAllByRoles(adminRole).isEmpty()) {
+            createAndSaveFirstAdmin(adminRole);
+        }
+    }
+
+    private void createAndSaveFirstAdmin(Role adminRole) {
+
+        User admin = new User();
+
+        admin.setId(1);
+        admin.setName("Grzesiu");
+        admin.setPassword(passwordEncoder.encode("123456"));
+        admin.setRoles(List.of(adminRole));
+        admin.setActive(true);
+
+        userRepository.save(admin);
+    }
+
+    private void createAndSaveRoleAdmin() {
+        roleRepository.save(new Role("ROLE_ADMIN"));
     }
 }

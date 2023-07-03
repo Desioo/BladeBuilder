@@ -1,9 +1,12 @@
 package com.example.bladebuilder.model.entity;
 
+import com.example.bladebuilder.model.security.Role;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -25,5 +28,9 @@ public class User {
 
     private Boolean active;
 
-    private String roles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> roles;
 }

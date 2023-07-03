@@ -1,7 +1,7 @@
-package com.example.bladebuilder.service;
+package com.example.bladebuilder.model.security;
 
 import com.example.bladebuilder.model.entity.User;
-import com.example.bladebuilder.model.security.UserDetailsImpl;
+import com.example.bladebuilder.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,6 +15,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserService userService;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> userByName = userService.findOptionalUserByName(username);
