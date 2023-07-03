@@ -1,6 +1,9 @@
 package com.example.bladebuilder.conf;
 
+import com.example.bladebuilder.model.entity.User;
+import com.example.bladebuilder.repository.UserRepository;
 import com.example.bladebuilder.service.UserDetailsServiceImpl;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,24 +21,32 @@ public class SecurityConfig {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    UserRepository userRepository;
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImpl();
     }
 
-//    @Bean
-//    public InMemoryUserDetailsManager get() {
-//
-////        UserDetails userDetails = userDetailsService.loadUserByUsername(name);
-//
-//        UserDetails admin = User.withUsername("Grzesiu")
-//                .password(passwordEncoder.encode("123456"))
-//                .roles("ADMIN")
-//                .build();
-//
-//
-//        return new InMemoryUserDetailsManager(List.of(admin));
-//    }
+    @PostConstruct
+    public void init() {
+        if (userRepository.count() == 0) {
+            // Tworzenie roli "Admin" (jeśli nie istnieje)
+//            Role adminRole = roleRepository.findByName("ROLE_ADMIN");
+//            if (adminRole == null) {
+//                adminRole = new Role("ROLE_ADMIN");
+//                roleRepository.save(adminRole);
+//            }
+
+            // Tworzenie użytkownika z rolą "Admin"
+            User adminUser = new User();
+            adminUser.setName("Grzesiu");
+            adminUser.setPassword(passwordEncoder.encode("123456"));
+            adminUser.setRoles("ROLE_ADMIN");
+            userRepository.save(adminUser);
+        }
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -60,6 +71,4 @@ public class SecurityConfig {
         authenticationProvider.setPasswordEncoder(passwordEncoder);
         return authenticationProvider;
     }
-
-
 }
