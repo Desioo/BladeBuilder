@@ -1,4 +1,4 @@
-package com.example.bladebuilder.model.reguest.order;
+package com.example.bladebuilder.converter.request.order;
 
 import lombok.Builder;
 import lombok.Data;

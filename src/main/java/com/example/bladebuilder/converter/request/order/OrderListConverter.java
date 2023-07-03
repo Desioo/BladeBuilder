@@ -1,14 +1,15 @@
-package com.example.bladebuilder.converter.request;
+package com.example.bladebuilder.converter.request.order;
 
 import com.example.bladebuilder.exception.IncorrectOrdersException;
 import com.example.bladebuilder.model.entity.Order;
-import com.example.bladebuilder.model.reguest.order.OrderMapper;
-import com.example.bladebuilder.model.reguest.order.OrderMapperKey;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class OrderListConverter implements Converter<String, List<Order>> {
@@ -17,7 +18,7 @@ public class OrderListConverter implements Converter<String, List<Order>> {
     private OrderConverter orderConverter;
 
     @Autowired
-    private OrderMapper orderMapper;
+    private OrderMapperKeyService orderMapper;
 
     @Override
     @SneakyThrows

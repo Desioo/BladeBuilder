@@ -1,11 +1,9 @@
-package com.example.bladebuilder.converter.request;
+package com.example.bladebuilder.converter.request.order;
 
 import com.example.bladebuilder.model.entity.Order;
-import com.example.bladebuilder.model.reguest.order.OrderMapperKey;
 import org.springframework.core.convert.converter.Converter;
 
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class OrderConverter implements Converter<Map<String, Object>, Order> {
 

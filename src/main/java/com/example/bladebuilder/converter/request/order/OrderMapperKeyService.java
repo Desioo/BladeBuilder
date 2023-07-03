@@ -1,16 +1,16 @@
-package com.example.bladebuilder.model.reguest.order;
+package com.example.bladebuilder.converter.request.order;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
-public class OrderMapper {
+@Service
+public class OrderMapperKeyService {
 
     private final List<OrderMapperKey> orderMapperKeyList = new ArrayList<>();
 
-    public OrderMapper() {
+    public OrderMapperKeyService() {
 
         OrderMapperKey firstRegex = OrderMapperKey.builder()
                 .idSeq(0)
