@@ -1,8 +1,8 @@
 package com.example.bladebuilder.conf;
 
 import com.example.bladebuilder.converter.entity.MeasurementConverter;
-import com.example.bladebuilder.converter.request.OrderConverter;
-import com.example.bladebuilder.converter.request.OrderListConverter;
+import com.example.bladebuilder.converter.request.order.OrderConverter;
+import com.example.bladebuilder.converter.request.order.OrderListConverter;
 import com.example.bladebuilder.converter.response.MeasurementDetailsConverter;
 import com.example.bladebuilder.converter.response.MeasurementResponseDTOConverter;
 import com.example.bladebuilder.converter.response.MeasurementWithCalculationsConverter;
