@@ -23,6 +23,8 @@ public class OrderListConverter implements Converter<String, List<Order>> {
     @SneakyThrows
     public List<Order> convert(String orders) {
 
+        //TODO dokończyć (Usunąć zbędne klasy, przenieść do innego pakietu)
+
         List<OrderMapperKey> orderMapperKeyList = orderMapper.getOrderMapperKeyList();
 
         for (OrderMapperKey mapperKey : orderMapperKeyList) {
