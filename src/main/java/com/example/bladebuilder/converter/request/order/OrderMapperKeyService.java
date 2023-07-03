@@ -1,11 +1,11 @@
 package com.example.bladebuilder.converter.request.order;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Component
 public class OrderMapperKeyService {
 
     private final List<OrderMapperKey> orderMapperKeyList = new ArrayList<>();
@@ -22,8 +22,8 @@ public class OrderMapperKeyService {
                 .width(7)
                 .location(10)
                 .ordersElementsLength(11)
-                .regex("^\"(([\\d ]+\\\\t){2}\\d{4}-\\d{2}-\\d{2}\\\\t((.+)\\\\t){2}"
-                        + "(.+)\\\\t([\\d ,]+\\\\t){3}([A-Za-z\\d]{0,4})?\\n?)+\"$")
+                .regex("^(([\\d ]+\\\\t){2}\\d{4}-\\d{2}-\\d{2}\\\\t((.+)\\\\t){2}"
+                        + "(.+)\\\\t([\\d ,]+\\\\t){3}([A-Za-z\\d]{0,4})?\\n?)+$")
                 .build();
 
         OrderMapperKey secondRegex = OrderMapperKey.builder()
@@ -36,8 +36,8 @@ public class OrderMapperKeyService {
                 .width(10)
                 .location(14)
                 .ordersElementsLength(15)
-                .regex("^\"(([\\d ]+\\\\t)((.+)\\\\t){3}\\d{4}-\\d{2}-\\d{2}\\\\t([\\d ]+\\\\t)"
-                        + "(((.+)\\\\t)){3}([\\d ,]+\\\\t){2}(((.+)\\\\t)){3}([A-Za-z\\d]{0,4})?\\n?)+\"$")
+                .regex("^(([\\d ]+\\\\t)((.+)\\\\t){3}\\d{4}-\\d{2}-\\d{2}\\\\t([\\d ]+\\\\t)"
+                        + "(((.+)\\\\t)){3}([\\d ,]+\\\\t){2}(((.+)\\\\t)){3}([A-Za-z\\d]{0,4})?\\n?)+$")
                 .build();
 
         orderMapperKeyList.add(firstRegex);

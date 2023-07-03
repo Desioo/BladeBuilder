@@ -2,6 +2,7 @@ package com.example.bladebuilder.converter.request.order;
 
 import com.example.bladebuilder.exception.IncorrectOrdersException;
 import com.example.bladebuilder.model.entity.Order;
+import lombok.NonNull;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
@@ -22,21 +23,29 @@ public class OrderListConverter implements Converter<String, List<Order>> {
 
     @Override
     @SneakyThrows
-    public List<Order> convert(String orders) {
-
-        //TODO dokończyć (Usunąć zbędne klasy, przenieść do innego pakietu)
+    public List<Order> convert(@NonNull String orders) {
 
         List<OrderMapperKey> orderMapperKeyList = orderMapper.getOrderMapperKeyList();
 
+        //TODO dokończyć (Usunąć zbędne klasy, przenieść do innego pakietu)
+
+        orders = removeRedundantCharacters(orders);
+
         for (OrderMapperKey mapperKey : orderMapperKeyList) {
             if (orders.matches(mapperKey.getRegex())) {
-                orders = orders.replaceAll("\"", "");
                 return convertOrdersList(orders.split("\\\\n"), orderConverter, mapperKey);
             }
         }
 
         throw new IncorrectOrdersException();
 
+    }
+
+    private static String removeRedundantCharacters(String orders){
+        return orders
+                .replaceAll("^\"", "")
+                .replaceAll("\\\\n\"$", "")
+                .replaceAll("\"$", "");
     }
 
     private static List<Order> convertOrdersList(
