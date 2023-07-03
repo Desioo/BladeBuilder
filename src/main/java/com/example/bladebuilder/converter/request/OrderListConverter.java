@@ -2,14 +2,13 @@ package com.example.bladebuilder.converter.request;
 
 import com.example.bladebuilder.exception.IncorrectOrdersException;
 import com.example.bladebuilder.model.entity.Order;
-import com.example.bladebuilder.utils.RegexMapMatcher;
+import com.example.bladebuilder.model.reguest.order.OrderMapper;
+import com.example.bladebuilder.model.reguest.order.OrderMapperKey;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class OrderListConverter implements Converter<String, List<Order>> {
@@ -18,21 +17,19 @@ public class OrderListConverter implements Converter<String, List<Order>> {
     private OrderConverter orderConverter;
 
     @Autowired
-    private RegexMapMatcher regexMapMatcher;
+    private OrderMapper orderMapper;
 
     @Override
     @SneakyThrows
     public List<Order> convert(String orders) {
 
-        Map<String, Map<String, Integer>> map = regexMapMatcher.getRegexELementsIndexMap();
+        List<OrderMapperKey> orderMapperKeyList = orderMapper.getOrderMapperKeyList();
 
-        for (Map.Entry<String, Map<String, Integer>> regex : map.entrySet()) {
-
-            if (orders.matches(regex.getKey())) {
+        for (OrderMapperKey mapperKey : orderMapperKeyList) {
+            if (orders.matches(mapperKey.getRegex())) {
                 orders = orders.replaceAll("\"", "");
-                return convertOrdersList(orders.split("\\\\n"), orderConverter, map.get(regex.getKey()));
+                return convertOrdersList(orders.split("\\\\n"), orderConverter, mapperKey);
             }
-
         }
 
         throw new IncorrectOrdersException();
@@ -40,9 +37,17 @@ public class OrderListConverter implements Converter<String, List<Order>> {
     }
 
     private static List<Order> convertOrdersList(
-            String[] list, Converter<Map<String, Map<String, Integer>>, Order> converter, Map<String, Integer> map) {
+            String[] list, Converter<Map<String, Object>, Order> converter, OrderMapperKey mapperKey) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("elementsIndex", mapperKey);
         return Arrays.stream(list)
-                .map(e -> converter.convert(Map.of(e, map))).collect(Collectors.toList());
+                .map(e -> {
+                    map.put("orderToConvert", e);
+                    return converter.convert(map);
+                })
+                .collect(Collectors.toList());
     }
-
 }
+
+
+

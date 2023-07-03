@@ -1,41 +1,40 @@
 package com.example.bladebuilder.converter.request;
 
 import com.example.bladebuilder.model.entity.Order;
+import com.example.bladebuilder.model.reguest.order.OrderMapperKey;
 import org.springframework.core.convert.converter.Converter;
 
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class OrderConverter implements Converter<Map<String, Map<String, Integer>>, Order> {
+public class OrderConverter implements Converter<Map<String, Object>, Order> {
 
     @Override
-    public Order convert(Map<String, Map<String, Integer>> ordersAndElementsIndex) {
+    public Order convert(Map<String, Object> ordersAndElementsIndex) {
 
-        String orderToConvert = String.join("", ordersAndElementsIndex.keySet());
+        String[] orderSplit = ordersAndElementsIndex.get("orderToConvert").toString().split("\\\\t");
 
-        String[] orderSplit = orderToConvert.split("\\\\t");
-
-        Map<String, Integer> elementsIndex = ordersAndElementsIndex.get(orderToConvert);
+        OrderMapperKey elementsIndex = (OrderMapperKey) ordersAndElementsIndex.get("elementsIndex");
 
         return createNewOrder(orderSplit, elementsIndex);
     }
 
-    private Order createNewOrder(String[] orderSplit, Map<String, Integer> elementsIndex) {
+    private Order createNewOrder(String[] orderSplit, OrderMapperKey elementsIndex) {
 
         Order order = new Order();
 
-        order.setIdSeq(Integer.parseInt(orderSplit[elementsIndex.get("idSeq") != null ?
-                elementsIndex.get("idSeq") : 0]));
+        order.setIdSeq(Integer.parseInt(orderSplit[elementsIndex.getIdSeq() != null ?
+                elementsIndex.getIdSeq() : 0]));
 
-        order.setSeq(Integer.parseInt(orderSplit[elementsIndex.get("seq")].replaceAll(" ", "")));
-        order.setCustomer(orderSplit[elementsIndex.get("customer")]);
-        order.setDescription(orderSplit[elementsIndex.get("description")]);
-        order.setInvoiceNumber(orderSplit[elementsIndex.get("invoiceNumber")]);
-        order.setThickness(orderSplit[elementsIndex.get("thickness")]);
-        order.setWidth(orderSplit[elementsIndex.get("width")]);
+        order.setSeq(Integer.parseInt(orderSplit[elementsIndex.getSeq()].replaceAll(" ", "")));
+        order.setCustomer(orderSplit[elementsIndex.getCustomer()]);
+        order.setDescription(orderSplit[elementsIndex.getDescription()]);
+        order.setInvoiceNumber(orderSplit[elementsIndex.getInvoiceNumber()]);
+        order.setThickness(orderSplit[elementsIndex.getThickness()]);
+        order.setWidth(orderSplit[elementsIndex.getWidth()]);
 
-        order.setLocation(orderSplit.length >= elementsIndex.get("ordersElementsLength") ?
-                orderSplit[elementsIndex.get("location")] : "");
+        order.setLocation(orderSplit.length >= elementsIndex.getOrdersElementsLength() ?
+                orderSplit[elementsIndex.getLocation()] : "");
 
         return order;
 
