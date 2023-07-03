@@ -44,6 +44,7 @@ public class SecurityConfig {
             adminUser.setName("Grzesiu");
             adminUser.setPassword(passwordEncoder.encode("123456"));
             adminUser.setRoles("ROLE_ADMIN");
+            adminUser.setActive(true);
             userRepository.save(adminUser);
         }
     }
