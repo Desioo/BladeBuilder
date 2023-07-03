@@ -24,4 +24,6 @@ public class User {
     private String password;
 
     private Boolean active;
+
+    private String roles;
 }
