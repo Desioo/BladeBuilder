@@ -29,16 +29,13 @@ public class OrderListConverter implements Converter<String, List<Order>> {
 
         //TODO dokończyć (Usunąć zbędne klasy, przenieść do innego pakietu)
 
-        orders = removeRedundantCharacters(orders);
+        String correctOrders = removeRedundantCharacters(orders);
 
-        for (OrderMapperKey mapperKey : orderMapperKeyList) {
-            if (orders.matches(mapperKey.getRegex())) {
-                return convertOrdersList(orders.split("\\\\n"), orderConverter, mapperKey);
-            }
-        }
-
-        throw new IncorrectOrdersException();
-
+        return orderMapperKeyList.stream()
+                .filter(mapperKey -> correctOrders.matches(mapperKey.getRegex()))
+                .findFirst()
+                .map(mapperKey -> convertOrdersList(correctOrders.split("\\\\n"), orderConverter, mapperKey))
+                .orElseThrow(IncorrectOrdersException::new);
     }
 
     private static String removeRedundantCharacters(String orders){
