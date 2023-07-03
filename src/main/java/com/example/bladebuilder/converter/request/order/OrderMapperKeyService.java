@@ -26,7 +26,23 @@ public class OrderMapperKeyService {
                         + "(.+)\\\\t([\\d ,]+\\\\t){3}([A-Za-z\\d]{0,4})?\\n?)+\"$")
                 .build();
 
+        OrderMapperKey secondRegex = OrderMapperKey.builder()
+                .idSeq(0)
+                .seq(5)
+                .customer(6)
+                .description(8)
+                .invoiceNumber(7)
+                .thickness(9)
+                .width(10)
+                .location(14)
+                .ordersElementsLength(15)
+                .regex("^\"(([\\d ]+\\\\t)((.+)\\\\t){3}\\d{4}-\\d{2}-\\d{2}\\\\t([\\d ]+\\\\t)"
+                        + "(((.+)\\\\t)){3}([\\d ,]+\\\\t){2}(((.+)\\\\t)){3}([A-Za-z\\d]{0,4})?\\n?)+\"$")
+                .build();
+
         orderMapperKeyList.add(firstRegex);
+        orderMapperKeyList.add(secondRegex);
+
     }
 
     public List<OrderMapperKey> getOrderMapperKeyList() {
