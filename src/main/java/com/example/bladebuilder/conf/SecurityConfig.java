@@ -31,7 +31,8 @@ public class SecurityConfig {
 
     @PostConstruct
     public void init() {
-        if (userRepository.count() == 0) {
+
+        if (userRepository.count() == 0 || userRepository.findAllUserByRoles("ROLE_ADMIN").isEmpty()) {
             // Tworzenie roli "Admin" (jeśli nie istnieje)
 //            Role adminRole = roleRepository.findByName("ROLE_ADMIN");
 //            if (adminRole == null) {
@@ -41,6 +42,7 @@ public class SecurityConfig {
 
             // Tworzenie użytkownika z rolą "Admin"
             User adminUser = new User();
+            adminUser.setId(1);
             adminUser.setName("Grzesiu");
             adminUser.setPassword(passwordEncoder.encode("123456"));
             adminUser.setRoles("ROLE_ADMIN");
