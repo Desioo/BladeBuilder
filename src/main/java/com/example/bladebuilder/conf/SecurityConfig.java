@@ -7,6 +7,7 @@ import com.example.bladebuilder.repository.RoleRepository;
 import com.example.bladebuilder.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -22,14 +23,22 @@ import java.util.List;
 @Configuration
 public class SecurityConfig {
 
-    @Autowired
     PasswordEncoder passwordEncoder;
-
-    @Autowired
     UserRepository userRepository;
+    RoleRepository roleRepository;
+
+    @Value("${adminName}")
+    private String adminName;
+
+    @Value("${adminPassword}")
+    private String adminPassword;
 
     @Autowired
-    RoleRepository roleRepository;
+    public SecurityConfig(PasswordEncoder passwordEncoder, UserRepository userRepository, RoleRepository roleRepository) {
+        this.passwordEncoder = passwordEncoder;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+    }
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -79,8 +88,8 @@ public class SecurityConfig {
         User admin = new User();
 
         admin.setId(1);
-        admin.setName("Grzesiu");
-        admin.setPassword(passwordEncoder.encode("123456"));
+        admin.setName(adminName);
+        admin.setPassword(passwordEncoder.encode(adminPassword));
         admin.setRoles(List.of(adminRole));
         admin.setActive(true);
 
