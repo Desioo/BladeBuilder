@@ -1,4 +1,4 @@
-package com.example.bladebuilder.order.request;
+package com.example.bladebuilder.order.converter;
 
 import com.example.bladebuilder.order.Order;
 import org.springframework.core.convert.converter.Converter;

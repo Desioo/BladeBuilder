@@ -1,6 +1,5 @@
 package com.example.bladebuilder.measurement;
 
-import com.example.bladebuilder.measurement.Measurement;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

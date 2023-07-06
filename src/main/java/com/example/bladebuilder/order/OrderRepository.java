@@ -1,6 +1,5 @@
 package com.example.bladebuilder.order;
 
-import com.example.bladebuilder.order.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

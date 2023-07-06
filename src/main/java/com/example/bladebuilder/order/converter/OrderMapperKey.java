@@ -1,4 +1,4 @@
-package com.example.bladebuilder.order.request;
+package com.example.bladebuilder.order.converter;
 
 import lombok.Builder;
 import lombok.Data;

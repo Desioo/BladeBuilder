@@ -1,9 +1,9 @@
 package com.example.bladebuilder.conf;
 
-import com.example.bladebuilder.user.User;
 import com.example.bladebuilder.security.Role;
-import com.example.bladebuilder.security.UserDetailsServiceImpl;
 import com.example.bladebuilder.security.RoleRepository;
+import com.example.bladebuilder.security.UserDetailsServiceImpl;
+import com.example.bladebuilder.user.User;
 import com.example.bladebuilder.user.UserRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;

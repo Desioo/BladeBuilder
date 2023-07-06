@@ -17,8 +17,8 @@ public class Knife implements CenterCalculator, SizeToDistanceMapper, DimensionT
     private static final BigDecimal KNIFE_CORRECTION = new BigDecimal("0.04");
     private static final BigDecimal TEN_PERCENT = new BigDecimal("0.1");
 
-    private  BigDecimal distanceThree;
-    private  BigDecimal distanceFive;
+    private BigDecimal distanceThree;
+    private BigDecimal distanceFive;
 
     private final MeasurementRequestDTO measurementRequestDTO;
     @Getter

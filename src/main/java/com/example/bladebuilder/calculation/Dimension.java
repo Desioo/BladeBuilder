@@ -20,7 +20,7 @@ public class Dimension {
     @DecimalMax("30")
     private BigDecimal quantity;
 
-    public Dimension(String quantity, String size){
+    public Dimension(String quantity, String size) {
         this.quantity = new BigDecimal(quantity);
         this.size = new BigDecimal(size);
     }

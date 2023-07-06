@@ -1,9 +1,7 @@
 package com.example.bladebuilder.measurement;
 
-import com.example.bladebuilder.measurement.Measurement;
 import com.example.bladebuilder.measurement.reguest.MeasurementRequestDTO;
 import com.example.bladebuilder.measurement.response.MeasurementWithCalculationsDTO;
-import com.example.bladebuilder.measurement.MeasurementService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;

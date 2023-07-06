@@ -17,5 +17,4 @@ public class ListConverter {
         return Arrays.stream(list)
                 .map(converter::convert).collect(Collectors.toList());
     }
-
 }
