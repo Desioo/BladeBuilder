@@ -1,7 +1,8 @@
 package com.example.bladebuilder.measurement;
 
+import com.example.bladebuilder.measurement.converter.MeasurementConverter;
 import com.example.bladebuilder.measurement.reguest.MeasurementRequestDTO;
-import com.example.bladebuilder.measurement.response.MeasurementWithCalculationsConverter;
+import com.example.bladebuilder.measurement.converter.MeasurementWithCalculationsConverter;
 import com.example.bladebuilder.measurement.response.MeasurementWithCalculationsDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

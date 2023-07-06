@@ -1,11 +1,11 @@
 package com.example.bladebuilder.conf;
 
-import com.example.bladebuilder.measurement.MeasurementConverter;
+import com.example.bladebuilder.measurement.converter.MeasurementConverter;
 import com.example.bladebuilder.order.request.OrderConverter;
 import com.example.bladebuilder.order.request.OrderListConverter;
-import com.example.bladebuilder.measurement.response.MeasurementDetailsConverter;
-import com.example.bladebuilder.measurement.response.MeasurementResponseDTOConverter;
-import com.example.bladebuilder.measurement.response.MeasurementWithCalculationsConverter;
+import com.example.bladebuilder.measurement.converter.MeasurementDetailsConverter;
+import com.example.bladebuilder.measurement.converter.MeasurementResponseDTOConverter;
+import com.example.bladebuilder.measurement.converter.MeasurementWithCalculationsConverter;
 import com.example.bladebuilder.user.UserResponseDTOConverter;
 import com.example.bladebuilder.exception.GlobalExceptionHandler;
 import org.springframework.context.MessageSource;

@@ -1,8 +1,9 @@
-package com.example.bladebuilder.measurement.response;
+package com.example.bladebuilder.measurement.converter;
 
 import com.example.bladebuilder.calculation.Knife;
 import com.example.bladebuilder.calculation.Separator;
 import com.example.bladebuilder.measurement.reguest.MeasurementRequestDTO;
+import com.example.bladebuilder.measurement.response.MeasurementWithCalculationsDTO;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;

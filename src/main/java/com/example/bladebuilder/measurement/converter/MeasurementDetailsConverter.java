@@ -1,4 +1,4 @@
-package com.example.bladebuilder.measurement.response;
+package com.example.bladebuilder.measurement.converter;
 
 import com.example.bladebuilder.measurement.reguest.MeasurementRequestDTO;
 import com.example.bladebuilder.measurement.MeasurementDetails;
