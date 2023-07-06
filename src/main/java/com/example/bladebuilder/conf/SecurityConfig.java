@@ -27,10 +27,10 @@ public class SecurityConfig {
     UserRepository userRepository;
     RoleRepository roleRepository;
 
-    @Value("${adminName}")
+    @Value("${admin.name}")
     private String adminName;
 
-    @Value("${adminPassword}")
+    @Value("${admin.password}")
     private String adminPassword;
 
     @Autowired
