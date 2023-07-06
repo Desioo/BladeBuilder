@@ -1,7 +1,8 @@
 package com.example.bladebuilder.controller;
 
-import com.example.bladebuilder.model.entity.Measurement;
-import com.example.bladebuilder.service.MeasurementService;
+import com.example.bladebuilder.measurement.Measurement;
+import com.example.bladebuilder.measurement.MeasurementController;
+import com.example.bladebuilder.measurement.MeasurementService;
 import org.junit.Test;
 import org.mockito.Mockito;
 

@@ -1,6 +1,6 @@
 package com.example.bladebuilder.exception;
 
-import com.example.bladebuilder.model.reguest.UpdateData;
+import com.example.bladebuilder.measurement.reguest.UpdateData;
 import jakarta.validation.ConstraintViolation;
 import lombok.Data;
 

@@ -1,8 +1,8 @@
 package com.example.bladebuilder.model.calculation.separator;
 
-import com.example.bladebuilder.model.calculation.Dimension;
-import com.example.bladebuilder.model.calculation.Separator;
-import com.example.bladebuilder.model.reguest.MeasurementRequestDTO;
+import com.example.bladebuilder.calculation.Dimension;
+import com.example.bladebuilder.calculation.Separator;
+import com.example.bladebuilder.measurement.reguest.MeasurementRequestDTO;
 import lombok.SneakyThrows;
 import org.junit.Test;
 
